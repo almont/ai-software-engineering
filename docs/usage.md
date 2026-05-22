@@ -12,9 +12,17 @@ All durable documentation copied from this repository should remain in English. 
 4. Copy a permission guide from `permissions/` if the team wants documented safe actions.
 5. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
 
+## New Feature Planning
+
+1. Use `templates/new-feature-request.md` to describe the feature request.
+2. Use `presets/new-feature-planning.md` to generate a Staff Engineer-level plan.
+3. Review scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback before implementation starts.
+4. Use `presets/implementation-guidelines.md` when the feature is ready to build.
+
 ## Choosing Presets
 
 - Use `engineering-review.md` for broad staff-level review.
+- Use `new-feature-planning.md` before implementing a non-trivial feature.
 - Use `security-review.md` for auth, input, data exposure, uploads, dependencies, or webhook risks.
 - Use `reliability-review.md` for async, queue, webhook, retry, timeout, and production failure risks.
 - Use `test-review.md` before approval when test coverage is uncertain.

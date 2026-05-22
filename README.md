@@ -9,6 +9,7 @@ This repository is intentionally documentation-first. It is a source of truth fo
 Use this repository to standardize how AI agents work across projects:
 
 - How agents should implement features and fixes.
+- How agents should plan new features before implementation.
 - How agents should review code.
 - How agents should reason about security, reliability, tests, and trade-offs.
 - Which local development actions are commonly safe.
@@ -69,12 +70,20 @@ All durable repository documentation should be written in English.
 4. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
 5. Copy the relevant file from `permissions/` if you want a documented allowlist.
 
+## How To Plan A New Feature
+
+1. Start with `templates/new-feature-request.md` to capture the problem, desired outcome, scope, constraints, acceptance criteria, trade-offs, tests, and rollout expectations.
+2. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation.
+3. Review the plan for scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback.
+4. Only then move into implementation using `presets/implementation-guidelines.md`.
+
 ## Available Presets
 
 - `presets/engineering-review.md`: staff-level review focused on business impact, architecture, security, reliability, observability, tests, and operational risk.
 - `presets/security-review.md`: security review for injection, auth, authorization, sensitive data, SSRF, unsafe upload, webhook spoofing, validation, and rate limits.
 - `presets/reliability-review.md`: reliability review for retries, timeouts, idempotency, race conditions, dead-letter queues, partial failures, observability, rollback, and data consistency.
 - `presets/test-review.md`: test coverage review for unit, integration, contract, happy path, error path, edge case, and regression coverage.
+- `presets/new-feature-planning.md`: Staff Engineer-level feature planning before implementation.
 - `presets/implementation-guidelines.md`: implementation workflow for feature work and bug fixes.
 - `presets/feature-flow-mapping.md`: end-to-end feature flow mapping.
 - `presets/event-driven-flow-mapping.md`: producer, consumer, payload, retry, ordering, DLQ, and idempotency mapping.
