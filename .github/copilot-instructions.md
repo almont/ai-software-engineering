@@ -3,6 +3,7 @@
 Act with Staff Engineer judgment: consider scale, operational risk, long-term maintenance, and system sustainability. Keep repository documentation in English.
 
 Follow the repository's existing architecture, naming, folder structure, frameworks, libraries, and test style. Preserve existing patterns unless there is a clear reason to propose a change.
+Read `docs/project-overview.md` when present to understand the current project shape and decision history.
 
 Prioritize clarity, automated tests, low coupling, and future maintenance. Keep code simple, explicit, and easy to review. Use DDD only for relevant business logic and design patterns only when they simplify the solution. Avoid overengineering.
 
@@ -21,3 +22,5 @@ For implementation work:
 - Prefer meaningful logs for important business events and failures, following existing correlation ID patterns.
 
 For reviews, focus on security, reliability, observability, missing tests, backward compatibility, customer impact, money movement, data consistency, and important trade-offs. Return concrete findings with file references and suggested fixes.
+
+For meaningful feature, workflow, structure, permission, or governance changes, keep `docs/project-overview.md` current and add one decision log entry under `docs/decisions/`.

@@ -1,0 +1,81 @@
+# Project Overview
+
+This document is the living overview for the AI Presets Boilerplate repository. Update it whenever a meaningful development decision, workflow change, feature, preset, template, or repository structure change is introduced.
+
+## Purpose
+
+This repository provides reusable AI agent presets for Codex, Claude, GitHub Copilot, and team review workflows. It standardizes how agents plan work, implement features, review code, reason about trade-offs, and handle safe development permissions.
+
+The repository is documentation-first. It has no runtime, package manager, or install script.
+
+## Agent Operating Model
+
+Agents should act as experienced Staff Engineers. They should optimize for:
+
+- Clarity.
+- Automated tests.
+- Low coupling.
+- Maintainability.
+- Scale.
+- Operational safety.
+- Backward compatibility.
+- System sustainability.
+- Explicit trade-off analysis.
+
+All durable repository documentation must be written in English.
+
+## Core Repository Areas
+
+- `AGENTS.md`: canonical instructions for Codex and similar coding agents.
+- `CLAUDE.md`: Claude-compatible project instructions.
+- `.github/copilot-instructions.md`: concise GitHub Copilot custom instructions.
+- `presets/`: reusable prompts for planning, implementation, review, reliability, security, tests, and flow mapping.
+- `templates/`: copy-ready request templates and project setup files.
+- `permissions/`: safe local development allowlists for Codex and Claude.
+- `examples/`: project-type examples showing which presets and templates to combine.
+- `docs/`: usage, maintenance, project overview, and decision logs.
+
+## Main Workflows
+
+### New Project Setup
+
+Use the `templates/new-project-*` files to copy agent instructions into a new repository. Add permission guidance from `permissions/` when the team wants explicit allowlists.
+
+### New Feature Planning
+
+Use `templates/new-feature-request.md` to capture the feature request. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation. Move to `presets/implementation-guidelines.md` only after scope, trade-offs, tests, security, reliability, observability, rollout, and rollback have been reviewed.
+
+### Reviews
+
+Use review presets in `presets/` to focus agents on engineering quality, security, reliability, tests, and event-driven or feature flow mapping.
+
+### Permissions
+
+Use `permissions/codex-allow.md` and `permissions/claude-allow.md` to document common safe local development actions and actions requiring explicit approval.
+
+## Documentation Governance
+
+Every meaningful development decision should create a decision log entry in `docs/decisions/`.
+
+Every meaningful feature or workflow change should update this overview when it changes:
+
+- Repository purpose.
+- Agent behavior.
+- Workflow.
+- Directory structure.
+- Permission policy.
+- Maintenance rules.
+- Important trade-offs.
+
+Use `templates/decision-log-entry.md` when adding new decision files.
+
+## Current Design Decisions
+
+- The repository is documentation-first and script-free.
+- `AGENTS.md` is the canonical source for agent behavior.
+- Durable documentation must be written in English.
+- Agents operate with Staff Engineer judgment.
+- Non-trivial work requires explicit trade-off analysis.
+- New feature requests have both a human intake template and an agent planning preset.
+- Development decisions are tracked as one file per decision under `docs/decisions/`.
+

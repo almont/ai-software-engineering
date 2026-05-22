@@ -26,6 +26,7 @@ Use these instructions for Codex and other coding agents working in this reposit
 
 Before coding, understand the project structure, conventions, frameworks, and test setup.
 Follow the existing pattern unless there is a clear reason to propose a change.
+Read `docs/project-overview.md` when present to understand the current project shape and decision history.
 
 For implementation tasks, briefly explain:
 
@@ -51,6 +52,14 @@ State the recommended path and why it is the best fit for the current scope.
 After implementation, run related tests and report the result. If tests cannot run, explain exactly why.
 
 If you find useful improvements outside the requested scope, list them as follow-up suggestions instead of implementing them without need.
+
+## Project Documentation And Decision Logs
+
+- Keep `docs/project-overview.md` updated when a meaningful feature, workflow, structure, permission, or governance change affects the project overview.
+- Create one decision log entry under `docs/decisions/` for each meaningful development decision.
+- Use `templates/decision-log-entry.md` for new decision log entries.
+- Keep decision logs concise and focused on context, decision, consequences, and follow-up.
+- Keep all durable repository documentation in English.
 
 ## Testing Expectations
 

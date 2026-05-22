@@ -24,7 +24,7 @@ Use these instructions when Claude works in this repository.
 
 ## Before Implementing
 
-First inspect the project structure, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change. Then briefly state:
+First inspect the project structure, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change. Read `docs/project-overview.md` when present to understand the current project shape and decision history. Then briefly state:
 
 1. Understanding of the problem.
 2. Files expected to change.
@@ -52,6 +52,14 @@ Cover the happy path, error scenarios, relevant business rules, edge cases, and 
 Run related tests after implementation. If a test cannot be run, explain the exact reason.
 
 If useful improvements are found outside the requested scope, list them separately instead of implementing them without need.
+
+## Project Documentation And Decision Logs
+
+- Keep `docs/project-overview.md` updated when a meaningful feature, workflow, structure, permission, or governance change affects the project overview.
+- Create one decision log entry under `docs/decisions/` for each meaningful development decision.
+- Use `templates/decision-log-entry.md` for new decision log entries.
+- Keep decision logs concise and focused on context, decision, consequences, and follow-up.
+- Keep all durable repository documentation in English.
 
 ## Security
 

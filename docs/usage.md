@@ -32,3 +32,9 @@ All durable documentation copied from this repository should remain in English. 
 ## Permission Guides
 
 The permission files document common safe local development actions. They are not permission engines by themselves. Use them as policy text when configuring Codex, Claude, or team workflows.
+
+## Project Overview And Decisions
+
+Read `docs/project-overview.md` to understand the current repository shape and operating model.
+
+For meaningful development decisions, create one file under `docs/decisions/` using `templates/decision-log-entry.md`. Update `docs/project-overview.md` when the project purpose, structure, workflow, permission policy, or maintenance model changes.

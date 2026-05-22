@@ -60,7 +60,7 @@ All durable repository documentation should be written in English.
 - `permissions/`: common safe development allowlists for Codex and Claude.
 - `templates/`: copy-ready files and review requests.
 - `examples/`: project-specific preset combinations.
-- `docs/`: usage and maintenance guidance.
+- `docs/`: usage, maintenance, project overview, and decision logs.
 
 ## How To Use In A New Project
 
@@ -127,8 +127,14 @@ Treat `AGENTS.md` as the canonical source. When standards change:
 4. Update matching files in `templates/`.
 5. Update `presets/`, `permissions/`, and `examples/` if needed.
 6. Review `docs/usage.md` and `docs/maintenance.md`.
+7. Update `docs/project-overview.md` when the project shape or workflow changes.
+8. Add a decision log entry under `docs/decisions/` for meaningful development decisions.
 
 Keep documentation in English, even when the original request or conversation is in another language.
+
+## Decision Logs
+
+Use `docs/project-overview.md` as the living summary of the repository. Use `docs/decisions/` for one decision file per meaningful development decision. Start new entries from `templates/decision-log-entry.md`.
 
 ## Design Choice
 

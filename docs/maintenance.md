@@ -11,7 +11,9 @@ All documentation in this repository must be written in English. If a user provi
 3. Condense relevant guidance into `.github/copilot-instructions.md`.
 4. Update matching files in `templates/`.
 5. Update `presets/`, `permissions/`, and `examples/` if the change affects them.
-6. Review `docs/usage.md` if setup steps changed.
+6. Update `docs/project-overview.md` if the project shape, workflow, permission policy, or governance model changed.
+7. Create a decision log entry under `docs/decisions/` for meaningful development decisions.
+8. Review `docs/usage.md` if setup steps changed.
 
 ## Consistency Checklist
 
@@ -23,7 +25,23 @@ All documentation in this repository must be written in English. If a user provi
 - Presets include concrete focus areas and output expectations.
 - Templates are copy-ready.
 - Examples reference existing files.
+- `docs/project-overview.md` reflects current repository behavior.
+- Meaningful development decisions have one decision log entry under `docs/decisions/`.
 - No secrets, tokens, credentials, personal data, or payment data appear in examples.
+
+## Decision Logs
+
+Use `templates/decision-log-entry.md` when creating new entries under `docs/decisions/`.
+
+Create a decision log entry for changes that affect:
+
+- Agent behavior.
+- Repository structure.
+- New project or new feature workflows.
+- Permission policy.
+- Review standards.
+- Documentation governance.
+- Operational or maintenance trade-offs.
 
 ## Versioning
 
