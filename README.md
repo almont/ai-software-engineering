@@ -124,3 +124,7 @@ Keep documentation in English, even when the original request or conversation is
 ## Design Choice
 
 This repository does not include an apply script yet. Manual copying keeps the first version transparent and easy to audit. If repeated setup becomes painful, an optional script can be added later without changing the documentation model.
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE` for details.
