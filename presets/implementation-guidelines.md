@@ -17,6 +17,31 @@ Apply to any feature implementation or bug fix.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 
+## Think Before Coding
+
+- State assumptions explicitly before implementation.
+- If requirements are unclear, stop, name the confusion, and ask.
+- If multiple interpretations are reasonable, present them instead of choosing silently.
+- Surface meaningful trade-offs and recommend the simplest approach that fits the request.
+- Push back when the requested or implied solution is more complex than the problem requires.
+
+## Simplicity First
+
+- Write the minimum code needed to solve the stated problem.
+- Do not add features, flexibility, configurability, or abstractions that were not requested.
+- Do not create abstractions for single-use code.
+- Do not add error handling for impossible scenarios.
+- If a solution becomes noticeably larger than necessary, simplify it before finishing.
+
+## Surgical Changes
+
+- Touch only the files and lines needed for the request.
+- Do not improve adjacent code, comments, formatting, names, or structure unless required.
+- Match the existing style even when a different style would be preferred.
+- Remove imports, variables, functions, and files made unused by your own changes.
+- Mention unrelated dead code or cleanup opportunities separately instead of changing them.
+- Every changed line should trace directly to the user's request.
+
 ## Before Coding
 
 Understand the current project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change.
@@ -28,6 +53,8 @@ Then briefly explain:
 3. Implementation strategy.
 4. Tests to create or adjust.
 5. Risks or trade-offs.
+
+For multi-step tasks, state a brief goal-driven plan with a verification check for each step.
 
 ## Trade-Off Analysis
 
@@ -47,6 +74,14 @@ State the recommended path and why it is the best fit for the current scope.
 - Make only changes needed for the requirement.
 - Avoid unrelated refactors, cosmetic edits, broad renames, or out-of-scope changes.
 - List useful follow-up improvements separately instead of implementing them without need.
+
+## Goal-Driven Execution
+
+- Convert requests into explicit, verifiable success criteria.
+- For bugs, add or identify a test or reproduction before fixing when practical.
+- For validation changes, cover invalid inputs and expected failures.
+- For refactors, verify behavior before and after the change when possible.
+- Continue iterating until the stated success criteria are met or a blocker is clearly explained.
 
 ## Required Tests
 

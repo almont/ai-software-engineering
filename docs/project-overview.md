@@ -22,6 +22,8 @@ Agents should act as experienced Staff Engineers. They should optimize for:
 - System sustainability.
 - Explicit trade-off analysis.
 
+Agents should think before coding by stating assumptions, surfacing ambiguity, and asking when requirements are unclear. They should prefer the simplest solution that fits the request, make surgical changes only, and turn tasks into verifiable goals with checks for multi-step work.
+
 All durable repository documentation must be written in English.
 
 ## Core Repository Areas
@@ -75,7 +77,9 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - `AGENTS.md` is the canonical source for agent behavior.
 - Durable documentation must be written in English.
 - Agents operate with Staff Engineer judgment.
+- Agents must think before coding, state assumptions, surface ambiguity, and avoid silent interpretation when requirements are unclear.
+- Agents prioritize minimum necessary implementation, avoid speculative flexibility, and keep changes surgical.
+- Multi-step execution should define verifiable success criteria and checks.
 - Non-trivial work requires explicit trade-off analysis.
 - New feature requests have both a human intake template and an agent planning preset.
 - Development decisions are tracked as one file per decision under `docs/decisions/`.
-

@@ -6,7 +6,15 @@ Follow existing project architecture, naming, folder structure, frameworks, libr
 
 Prioritize clarity, automated tests, low coupling, and future maintenance. Keep changes scoped and avoid unrelated refactors, cosmetic changes, unnecessary renames, or out-of-scope changes. Prefer simple, explicit code.
 
+Before coding, state assumptions explicitly, surface ambiguity, and ask when requirements are unclear. If multiple interpretations are reasonable, present them instead of choosing silently. Push back when a simpler approach better fits the problem.
+
+Write the minimum code needed to solve the stated problem. Do not add speculative features, flexibility, configurability, single-use abstractions, or impossible-scenario error handling.
+
+Make surgical changes only. Touch only what the request requires, match existing style, remove only unused code created by your own changes, and mention unrelated cleanup separately.
+
 Before implementing, inspect the current structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change. Explain the problem, files expected to change, strategy, tests, and risks.
+
+For multi-step work, define verifiable success criteria and a brief plan with a check for each step. Iterate until the checks pass or the blocker is clearly explained.
 
 Use DDD only when there is relevant business logic. Use design patterns only when they simplify the solution. Avoid overengineering.
 
