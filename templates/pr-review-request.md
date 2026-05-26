@@ -13,7 +13,7 @@ Focus on:
 - Operational risk.
 - Trade-offs in architecture or implementation choices.
 
-If this change touches payment, billing, webhooks, async processing, or data consistency, also focus on idempotency, duplicate processing, race conditions, retries, timeouts, auditability, and sensitive data exposure.
+If this change touches webhooks, async processing, external integrations, high-risk business workflows, or data consistency, also focus on idempotency, duplicate processing, race conditions, retries, timeouts, auditability, and sensitive data exposure.
 
 Return findings first, grouped by severity, with concrete file references and suggested fixes.
 

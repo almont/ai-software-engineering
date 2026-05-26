@@ -12,7 +12,7 @@ Write the minimum code needed to solve the stated problem. Do not add speculativ
 
 Make surgical changes only. Touch only what the request requires, match existing style, remove only unused code created by your own changes, and mention unrelated cleanup separately.
 
-Before implementing, inspect the current structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change. Explain the problem, files expected to change, strategy, tests, and risks.
+Before implementing, inspect the current structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Read `docs/project-overview.md` when present to understand the current project shape and decision history. Follow the existing pattern unless there is a clear reason to propose a change. Explain the problem, files expected to change, strategy, tests, and risks.
 
 For multi-step work, define verifiable success criteria and a brief plan with a check for each step. Iterate until the checks pass or the blocker is clearly explained.
 
@@ -22,6 +22,8 @@ For non-trivial changes, include a brief trade-off analysis covering simplicity 
 
 Add or update tests for happy paths, errors, business rules, edge cases, and regressions. Run related tests and report the result.
 
-Validate external input. Do not expose secrets, tokens, API keys, credentials, personal data, or payment data in logs. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why. Watch auth boundaries, idempotency, duplicate processing, race conditions, retries, timeouts, observability, and data consistency.
+Validate external input. Do not expose secrets, tokens, API keys, credentials, personal data, regulated data, or other sensitive data in logs. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why. Watch auth boundaries, idempotency, duplicate processing, race conditions, retries, timeouts, observability, and data consistency.
+
+Keep `docs/project-overview.md` updated when a meaningful feature, workflow, structure, permission, or governance change affects the project overview. Create one decision log entry under `docs/decisions/` for each meaningful development decision.
 
 When finished, summarize what changed, why, main files, tests, manual validation, and risks.

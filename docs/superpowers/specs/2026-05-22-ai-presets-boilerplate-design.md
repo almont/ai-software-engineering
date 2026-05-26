@@ -1,5 +1,7 @@
 # AI Presets Boilerplate Design
 
+Historical note: this is the original design artifact for the repository. Use `docs/project-overview.md`, `README.md`, and `docs/maintenance.md` for the current repository state and maintenance workflow.
+
 ## Goal
 
 Create a simple documented boilerplate repository for reusable AI agent presets across new projects. The repository will focus on Codex, Claude, and GitHub Copilot instructions, plus team review presets and safe development permission guidance.
@@ -16,7 +18,7 @@ In scope:
 - Reusable review, reliability, security, testing, implementation, and flow-mapping presets.
 - Safe development allowlists for Codex and Claude.
 - Copy-ready templates for new repositories.
-- Examples for backend, frontend, and billing/payment projects.
+- Examples for backend and frontend projects.
 - Usage and maintenance documentation.
 
 Out of scope:
@@ -57,7 +59,6 @@ Out of scope:
   examples/
     backend-service.md
     frontend-app.md
-    billing-payments.md
   docs/
     usage.md
     maintenance.md
@@ -100,7 +101,7 @@ Actions requiring explicit approval:
 - Production data access or mutation.
 - Secret, token, key, or credential handling.
 - Authentication, authorization, permission, or infrastructure changes.
-- Payment, billing, webhook, or money-movement behavior changes.
+- High-risk business workflow, webhook, or external integration behavior changes.
 - Database migrations, data deletion, or irreversible schema changes.
 - Docker prune/delete operations or volume/image/container removal.
 - Installing unknown tools or running untrusted network commands.

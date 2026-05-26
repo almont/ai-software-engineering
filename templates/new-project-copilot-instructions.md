@@ -2,7 +2,7 @@
 
 Act with Staff Engineer judgment: consider scale, operational risk, long-term maintenance, and system sustainability. Keep repository documentation in English.
 
-Follow existing architecture, naming, folder structure, frameworks, libraries, and test style.
+Follow existing architecture, naming, folder structure, frameworks, libraries, and test style. Read `docs/project-overview.md` when present to understand the current project shape and decision history.
 
 Prioritize clarity, automated tests, low coupling, and future maintenance. Keep changes scoped to the request. Prefer simple, explicit, maintainable code over clever abstractions.
 
@@ -22,8 +22,10 @@ For non-trivial changes, include trade-off reasoning when useful. Consider simpl
 
 Add or update tests for happy paths, errors, business rules, edge cases, and regressions.
 
-Validate external input. Do not log secrets, credentials, API keys, personal data, payment data, or tokens. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why.
+Validate external input. Do not log secrets, credentials, API keys, personal data, regulated data, or tokens. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why.
 
-For payment, billing, webhook, async, and integration flows, consider idempotency, duplicate processing, race conditions, retries, timeouts, observability, and data consistency.
+For webhook, async, external integration, and high-risk business flows, consider idempotency, duplicate processing, race conditions, retries, timeouts, observability, and data consistency.
 
 For reviews, prioritize security, reliability, missing tests, backward compatibility, customer impact, money movement, and data consistency.
+
+For meaningful feature, workflow, structure, permission, or governance changes, keep `docs/project-overview.md` current and add one decision log entry under `docs/decisions/`.

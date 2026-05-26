@@ -47,7 +47,7 @@ Use these instructions for Codex and other coding agents working in this reposit
 
 ## Before Coding
 
-Understand the project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style first. Follow the existing pattern unless there is a clear reason to propose a change. Then briefly explain the problem, files expected to change, implementation strategy, tests, and risks.
+Understand the project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style first. Read `docs/project-overview.md` when present to understand the current project shape and decision history. Follow the existing pattern unless there is a clear reason to propose a change. Then briefly explain the problem, files expected to change, implementation strategy, tests, and risks.
 
 For multi-step tasks, state a brief goal-driven plan with a verification check for each step.
 
@@ -61,13 +61,19 @@ For non-trivial changes, include a brief trade-off analysis covering simplicity 
 - For refactors, verify behavior before and after the change when possible.
 - Continue iterating until the stated success criteria are met or a blocker is clearly explained.
 
+## Project Documentation And Decision Logs
+
+- Keep `docs/project-overview.md` updated when a meaningful feature, workflow, structure, permission, or governance change affects the project overview.
+- Create one decision log entry under `docs/decisions/` for each meaningful development decision.
+- Keep all durable repository documentation in English.
+
 ## Tests
 
 Cover happy paths, errors, relevant business rules, edge cases, and regressions. Run related tests after implementation and report results.
 
 ## Security and Reliability
 
-Validate external input. Do not expose secrets, tokens, API keys, credentials, personal data, or payment data in logs. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why. Check auth boundaries, idempotency, race conditions, retries, timeouts, and observability for sensitive or async flows.
+Validate external input. Do not expose secrets, tokens, API keys, credentials, personal data, regulated data, or other sensitive data in logs. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why. Check auth boundaries, idempotency, race conditions, retries, timeouts, and observability for sensitive or async flows.
 
 ## Final Summary
 

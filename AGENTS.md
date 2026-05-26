@@ -111,14 +111,14 @@ Use unit tests for core logic and integration or contract tests where external d
 ## Security
 
 - Validate all external inputs.
-- Do not log secrets, tokens, credentials, CPF/CNPJ, emails, payment data, or other sensitive data.
+- Do not log secrets, tokens, credentials, CPF/CNPJ, emails, regulated data, or other sensitive data.
 - Check authentication and authorization boundaries.
 - Watch for SQL injection, command injection, insecure deserialization, SSRF, unsafe file handling, unsafe uploads, and webhook spoofing.
 - Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why.
 
 ## Reliability
 
-- Check idempotency for payment, billing, webhook, async, and retryable flows.
+- Check idempotency for webhook, async, external integration, high-risk business, and retryable flows.
 - Watch for duplicate processing, race conditions, partial failures, and data consistency risks.
 - Verify retries, timeouts, fallbacks, and dead-letter behavior where applicable.
 - Make important failures observable.

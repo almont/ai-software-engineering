@@ -27,7 +27,23 @@ All documentation in this repository must be written in English. If a user provi
 - Examples reference existing files.
 - `docs/project-overview.md` reflects current repository behavior.
 - Meaningful development decisions have one decision log entry under `docs/decisions/`.
-- No secrets, tokens, credentials, personal data, or payment data appear in examples.
+- No secrets, tokens, credentials, personal data, regulated data, or other sensitive data appear in examples.
+
+## Documentation Validation
+
+This repository has no runtime test suite. For documentation changes, run lightweight validation before finishing:
+
+```bash
+find . -maxdepth 3 -type f | sort
+rg -n "[U]NFINISHED|[P]LACEHOLDER|[R]EPLACE_ME|[s]ample credential" . -g "*.md" -g "!docs/superpowers/**"
+rg -n "examples/.*\\.md" README.md docs examples templates presets AGENTS.md CLAUDE.md
+```
+
+Review the output for:
+
+- References to files that do not exist.
+- Unfinished markers or accidental example secrets.
+- New examples, presets, templates, or permission files missing from usage or overview docs.
 
 ## Decision Logs
 

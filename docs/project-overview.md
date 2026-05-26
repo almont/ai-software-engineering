@@ -55,6 +55,12 @@ Use review presets in `presets/` to focus agents on engineering quality, securit
 
 Use `permissions/codex-allow.md` and `permissions/claude-allow.md` to document common safe local development actions and actions requiring explicit approval.
 
+Permission guides should prefer explicit command prefixes over broad tool prefixes. Package manager commands should name reviewed scripts such as test, lint, typecheck, build, and dev. Docker commands that inspect local state are generally safer than Docker lifecycle commands, which should require approval unless a project-specific allow rule has been reviewed.
+
+### Documentation Validation
+
+Use the lightweight validation checklist in `docs/maintenance.md` for documentation changes. The repository remains script-free; validation is performed with standard file listing and search commands.
+
 ## Documentation Governance
 
 Every meaningful development decision should create a decision log entry in `docs/decisions/`.
@@ -83,3 +89,5 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - Non-trivial work requires explicit trade-off analysis.
 - New feature requests have both a human intake template and an agent planning preset.
 - Development decisions are tracked as one file per decision under `docs/decisions/`.
+- Permission allowlists prefer explicit, reviewed command prefixes over broad package manager or Docker lifecycle permissions.
+- Documentation validation is maintained as a lightweight checklist rather than a runtime test suite or apply script.

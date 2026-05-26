@@ -99,14 +99,14 @@ If useful improvements are found outside the requested scope, list them separate
 ## Security
 
 - Validate external input.
-- Never expose secrets, tokens, credentials, CPF/CNPJ, emails, payment data, or other sensitive data in logs.
+- Never expose secrets, tokens, credentials, CPF/CNPJ, emails, regulated data, or other sensitive data in logs.
 - Check authentication and authorization boundaries.
 - Watch for injection, insecure deserialization, SSRF, unsafe file handling, unsafe uploads, webhook spoofing, weak validation, and missing rate limits.
 - Do not change authentication, authorization, permissions, infrastructure, global config, or CI/CD without explaining why.
 
 ## Reliability
 
-- Check idempotency for payments, billing, webhooks, async jobs, and retryable flows.
+- Check idempotency for webhooks, async jobs, external integrations, high-risk business flows, and retryable flows.
 - Watch for duplicate processing, race conditions, partial failures, and data consistency risks.
 - Check retries, timeouts, fallbacks, and dead-letter behavior.
 - Make important failures observable.

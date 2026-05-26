@@ -1,5 +1,7 @@
 # AI Presets Boilerplate Implementation Plan
 
+Historical note: this is the original implementation plan for the repository. Use `docs/project-overview.md`, `README.md`, and `docs/maintenance.md` for the current repository state and maintenance workflow.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build a documentation-first boilerplate repository for Codex, Claude, GitHub Copilot, team AI presets, and safe development permission guidance.
@@ -19,7 +21,7 @@
 - Create `presets/*.md`: reusable review, implementation, and flow mapping prompts.
 - Create `permissions/*.md`: safe development allowlists.
 - Create `templates/*.md`: copy-ready project instructions and request prompts.
-- Create `examples/*.md`: backend, frontend, and billing/payment examples.
+- Create `examples/*.md`: backend and frontend examples.
 - Create `docs/usage.md`: how to use files in new projects.
 - Create `docs/maintenance.md`: how to update and keep files aligned.
 
@@ -97,7 +99,7 @@ Confirm these require approval:
 - push, merge, release, deploy
 - secrets or credentials
 - auth/permissions
-- payment/billing/webhook behavior
+- high-risk business workflow, webhook, or external integration behavior
 - DB migrations or deletion
 - Docker prune/delete operations
 - unknown tool installs or untrusted network commands

@@ -95,9 +95,9 @@ The permission guides define common local development actions that are usually s
 - Read, list, and search files.
 - Inspect git status, diffs, branches, and logs.
 - Run tests, lint, format, typecheck, builds, and local dev servers.
-- Use `npm`, `pnpm`, and `yarn` for project scripts.
+- Use explicit `npm`, `pnpm`, and `yarn` scripts such as tests, linting, typechecking, builds, and local dev servers.
 - Use `gh` for non-destructive GitHub workflows.
-- Use `docker` and `docker compose` for local development.
+- Use `docker` and `docker compose` for local inspection such as `ps` and `logs`.
 
 They also define actions that require explicit approval:
 
@@ -106,16 +106,16 @@ They also define actions that require explicit approval:
 - Production data access or mutation.
 - Secret, token, key, or credential handling.
 - Authentication, authorization, permission, infrastructure, or CI/CD changes.
-- Payment, billing, webhook, or money-movement behavior changes.
+- High-risk business workflow, webhook, or external integration behavior changes.
 - Database migrations, schema deletion, or data deletion.
 - Docker prune or delete operations.
+- Broad package manager script prefixes or Docker lifecycle commands without project-specific review.
 - Unknown tool installs or untrusted network commands.
 
 ## Example Starting Points
 
 - Use `examples/backend-service.md` for backend APIs and services.
 - Use `examples/frontend-app.md` for frontend applications.
-- Use `examples/billing-payments.md` for payment, billing, webhook, or money-movement systems.
 
 ## Maintenance Rules
 

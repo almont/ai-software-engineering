@@ -29,6 +29,11 @@ All durable documentation copied from this repository should remain in English. 
 - Use `feature-flow-mapping.md` when onboarding to a feature or debugging an end-to-end path.
 - Use `event-driven-flow-mapping.md` for queue, event, pub/sub, webhook, or async systems.
 
+## Choosing Examples
+
+- Use `examples/backend-service.md` for backend APIs and services.
+- Use `examples/frontend-app.md` for frontend applications.
+
 ## Permission Guides
 
 The permission files document common safe local development actions. They are not permission engines by themselves. Use them as policy text when configuring Codex, Claude, or team workflows.

@@ -45,7 +45,7 @@ Document known constraints, such as deadlines, compatibility requirements, perfo
 
 ## Security And Reliability Notes
 
-Call out sensitive data, authentication, authorization, payment, billing, webhook, async processing, data consistency, or production risk.
+Call out sensitive data, authentication, authorization, webhooks, async processing, external integrations, data consistency, high-risk business workflows, or production risk.
 
 ## Test Expectations
 
@@ -64,4 +64,3 @@ Describe how this feature should be released, monitored, and rolled back if need
 ## Open Questions
 
 List unknowns that should be answered before implementation starts.
-
