@@ -70,6 +70,74 @@ All durable repository documentation should be written in English.
 4. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
 5. Copy the relevant file from `permissions/` if you want a documented allowlist.
 
+## Pull Files Into A Local Project
+
+Run this from the root of the target repository where you want to apply these presets. The script copies the main project instruction files, stores reusable presets under `docs/ai-presets/`, records the source commit, and prints every file it created.
+
+Existing files are not overwritten. When a destination already exists, the script writes a `.incoming` file so you can review the diff manually.
+
+```bash
+set -euo pipefail
+
+SOURCE_REPO="https://github.com/almont/ai-software-engineering.git"
+SOURCE_REF="main"
+TMP_DIR="$(mktemp -d)"
+CREATED_FILES="$(mktemp)"
+
+git clone --depth 1 --branch "$SOURCE_REF" --filter=blob:none --sparse "$SOURCE_REPO" "$TMP_DIR"
+git -C "$TMP_DIR" sparse-checkout set templates presets permissions examples
+
+copy_or_incoming() {
+  src="$1"
+  dest="$2"
+
+  mkdir -p "$(dirname "$dest")"
+
+  if [ -e "$dest" ]; then
+    cp "$src" "$dest.incoming"
+    echo "$dest.incoming" >> "$CREATED_FILES"
+  else
+    cp "$src" "$dest"
+    echo "$dest" >> "$CREATED_FILES"
+  fi
+}
+
+copy_or_incoming "$TMP_DIR/templates/new-project-AGENTS.md" "AGENTS.md"
+copy_or_incoming "$TMP_DIR/templates/new-project-CLAUDE.md" "CLAUDE.md"
+copy_or_incoming "$TMP_DIR/templates/new-project-copilot-instructions.md" ".github/copilot-instructions.md"
+
+mkdir -p docs/ai-presets
+
+for dir in presets permissions templates examples; do
+  mkdir -p "docs/ai-presets/$dir"
+  find "$TMP_DIR/$dir" -type f | while read -r src; do
+    rel="${src#"$TMP_DIR/"}"
+    dest="docs/ai-presets/$rel"
+    copy_or_incoming "$src" "$dest"
+  done
+done
+
+git -C "$TMP_DIR" rev-parse HEAD > docs/ai-presets/SOURCE_COMMIT
+echo "docs/ai-presets/SOURCE_COMMIT" >> "$CREATED_FILES"
+
+rm -rf "$TMP_DIR"
+
+echo "Created files:"
+sort -u "$CREATED_FILES"
+rm -f "$CREATED_FILES"
+
+echo
+echo "Review changes:"
+git status --short
+```
+
+After running it, review any `.incoming` files before replacing existing project documentation:
+
+```bash
+find . -name "*.incoming" -print
+git diff
+```
+
 ## How To Plan A New Feature
 
 1. Start with `templates/new-feature-request.md` to capture the problem, desired outcome, scope, constraints, acceptance criteria, trade-offs, tests, and rollout expectations.
