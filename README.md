@@ -72,7 +72,7 @@ All durable repository documentation should be written in English.
 
 ## Pull Files Into A Local Project
 
-Run this from the root of the target repository where you want to apply these presets. The script copies the main project instruction files, stores reusable presets under `docs/ai-presets/`, records the source commit, and prints every file it created.
+Run this from the root of the target repository where you want to apply these presets. The script copies files directly into the expected project structure, records the source commit, and prints every file it created.
 
 Existing files are not overwritten. When a destination already exists, the script writes a `.incoming` file so you can review the diff manually.
 
@@ -86,6 +86,7 @@ CREATED_FILES="$(mktemp)"
 
 git clone --depth 1 --branch "$SOURCE_REF" --filter=blob:none --sparse "$SOURCE_REPO" "$TMP_DIR"
 git -C "$TMP_DIR" sparse-checkout set templates presets permissions examples
+SOURCE_COMMIT="$(git -C "$TMP_DIR" rev-parse HEAD)"
 
 copy_or_incoming() {
   src="$1"
@@ -106,21 +107,26 @@ copy_or_incoming "$TMP_DIR/templates/new-project-AGENTS.md" "AGENTS.md"
 copy_or_incoming "$TMP_DIR/templates/new-project-CLAUDE.md" "CLAUDE.md"
 copy_or_incoming "$TMP_DIR/templates/new-project-copilot-instructions.md" ".github/copilot-instructions.md"
 
-mkdir -p docs/ai-presets
-
 for dir in presets permissions templates examples; do
-  mkdir -p "docs/ai-presets/$dir"
   find "$TMP_DIR/$dir" -type f | while read -r src; do
     rel="${src#"$TMP_DIR/"}"
-    dest="docs/ai-presets/$rel"
-    copy_or_incoming "$src" "$dest"
+    copy_or_incoming "$src" "$rel"
   done
 done
 
-git -C "$TMP_DIR" rev-parse HEAD > docs/ai-presets/SOURCE_COMMIT
-echo "docs/ai-presets/SOURCE_COMMIT" >> "$CREATED_FILES"
+SOURCE_DOC="$(mktemp)"
+cat > "$SOURCE_DOC" <<EOF
+# AI Presets Source
+
+- Repository: $SOURCE_REPO
+- Ref: $SOURCE_REF
+- Commit: $SOURCE_COMMIT
+EOF
+
+copy_or_incoming "$SOURCE_DOC" "docs/ai-presets-source.md"
 
 rm -rf "$TMP_DIR"
+rm -f "$SOURCE_DOC"
 
 echo "Created files:"
 sort -u "$CREATED_FILES"
@@ -131,12 +137,15 @@ echo "Review changes:"
 git status --short
 ```
 
-After running it, review any `.incoming` files before replacing existing project documentation:
+After running it, review both newly created files and `.incoming` conflict files:
 
 ```bash
+git status --short
 find . -name "*.incoming" -print
 git diff
 ```
+
+The `Created files:` output from the script lists every file written during the run. The `find` command only lists `.incoming` files created because a destination file already existed.
 
 ## How To Plan A New Feature
 

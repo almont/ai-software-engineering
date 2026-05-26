@@ -43,6 +43,8 @@ All durable repository documentation must be written in English.
 
 Use the `templates/new-project-*` files to copy agent instructions into a new repository. Add permission guidance from `permissions/` when the team wants explicit allowlists.
 
+The README includes a shell snippet for applying these presets to an existing local repository. The snippet copies files directly into the target repository structure, writes `.incoming` files instead of overwriting existing files, and records the source repository commit in `docs/ai-presets-source.md`.
+
 ### New Feature Planning
 
 Use `templates/new-feature-request.md` to capture the feature request. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation. Move to `presets/implementation-guidelines.md` only after scope, trade-offs, tests, security, reliability, observability, rollout, and rollback have been reviewed.
@@ -91,3 +93,4 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - Development decisions are tracked as one file per decision under `docs/decisions/`.
 - Permission allowlists prefer explicit, reviewed command prefixes over broad package manager or Docker lifecycle permissions.
 - Documentation validation is maintained as a lightweight checklist rather than a runtime test suite or apply script.
+- The local import workflow applies files directly to their expected target paths and uses `.incoming` files for reviewable conflicts.
