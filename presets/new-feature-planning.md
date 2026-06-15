@@ -2,7 +2,7 @@
 
 Act as an experienced Staff Engineer planning a new feature. Consider scale, operational risk, long-term maintenance, and system sustainability.
 
-Before proposing implementation, inspect the current project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style.
+Before proposing implementation, inspect the current project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Read `docs/project-overview.md` when present. If it is missing, inspect the project and recommend creating one before or alongside meaningful implementation work.
 
 Return a concise plan in this format:
 
@@ -17,6 +17,8 @@ List likely files, modules, services, APIs, UI surfaces, jobs, events, database 
 ## Recommended Approach
 
 Describe the implementation strategy. Keep the scope small, explicit, and easy to review. Follow existing patterns unless there is a clear reason to propose a change.
+
+For legacy projects, do not recommend DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requested that migration.
 
 ## Trade-Off Analysis
 
@@ -47,6 +49,8 @@ Mention any integration, contract, or end-to-end tests needed for external depen
 
 Call out risks around input validation, authentication, authorization, sensitive data, unsafe logs, idempotency, duplicate processing, race conditions, retries, timeouts, dead-letter behavior, data consistency, and meaningful logs.
 
+Include the post-change verification expectation: run related tests or validation checks and perform a brief security and reliability assessment after implementation.
+
 ## Rollout And Rollback
 
 Describe release strategy, migration needs, feature flags, monitoring, and rollback options where applicable.
@@ -58,4 +62,3 @@ List questions that must be answered before implementation. If there are none, s
 ## Implementation Steps
 
 Provide a short ordered implementation plan. Each step should be small enough to review independently.
-

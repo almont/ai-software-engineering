@@ -12,6 +12,7 @@ Use this repository to standardize how AI agents work across projects:
 - How agents should plan new features before implementation.
 - How agents should review code.
 - How agents should reason about security, reliability, tests, and trade-offs.
+- How agents should orient themselves with project overview documentation before implementation.
 - Which local development actions are commonly safe.
 - Which actions require explicit approval.
 
@@ -32,6 +33,12 @@ Agents using these presets should act as experienced Staff Engineers. They shoul
 - Trade-off analysis.
 
 For non-trivial changes, agents should explain what the chosen approach optimizes for and what it makes harder. They should prefer small, explicit, easy-to-review changes over broad rewrites.
+
+In legacy projects, agents should not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+
+Agents should read `docs/project-overview.md` when present. If it is missing, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
+
+After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
 
 All durable repository documentation should be written in English.
 
@@ -151,8 +158,9 @@ The `Created files:` output from the script lists every file written during the 
 
 1. Start with `templates/new-feature-request.md` to capture the problem, desired outcome, scope, constraints, acceptance criteria, trade-offs, tests, and rollout expectations.
 2. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation.
-3. Review the plan for scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback.
-4. Only then move into implementation using `presets/implementation-guidelines.md`.
+3. Use `presets/grill-me.md` when the plan has meaningful ambiguity or needs a deliberate stress test before implementation.
+4. Review the plan for scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback.
+5. Only then move into implementation using `presets/implementation-guidelines.md`.
 
 ## Available Presets
 
@@ -161,6 +169,7 @@ The `Created files:` output from the script lists every file written during the 
 - `presets/reliability-review.md`: reliability review for retries, timeouts, idempotency, race conditions, dead-letter queues, partial failures, observability, rollback, and data consistency.
 - `presets/test-review.md`: test coverage review for unit, integration, contract, happy path, error path, edge case, and regression coverage.
 - `presets/new-feature-planning.md`: Staff Engineer-level feature planning before implementation.
+- `presets/grill-me.md`: optional ambiguity-resolution interview for stress-testing plans and resolving decision dependencies before implementation.
 - `presets/implementation-guidelines.md`: implementation workflow for feature work and bug fixes.
 - `presets/feature-flow-mapping.md`: end-to-end feature flow mapping.
 - `presets/event-driven-flow-mapping.md`: producer, consumer, payload, retry, ordering, DLQ, and idempotency mapping.

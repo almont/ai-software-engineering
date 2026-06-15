@@ -14,6 +14,7 @@ Apply to any feature implementation or bug fix.
 - Keep code simple, explicit, and easy to review.
 - Follow the existing project structure and conventions.
 - Use DDD only when there is relevant business logic.
+- In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 
@@ -44,7 +45,7 @@ Apply to any feature implementation or bug fix.
 
 ## Before Coding
 
-Understand the current project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change.
+Understand the current project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Read `docs/project-overview.md` when present. If it is missing, inspect the project and suggest creating one before or alongside meaningful implementation work. Follow the existing pattern unless there is a clear reason to propose a change.
 
 Then briefly explain:
 
@@ -92,11 +93,14 @@ Cover:
 - Relevant business rules.
 - Edge cases.
 
+After any code change or implementation, run related tests or validation checks and report the result. If they cannot run, explain exactly why.
+
 ## Security and Compatibility
 
 - Do not expose secrets, tokens, API keys, or sensitive data.
 - Do not alter global config, CI/CD, authentication, permissions, or infrastructure without explaining why.
 - Preserve existing behavior unless the requirement explicitly changes it.
+- Perform a brief security and reliability assessment after changes, covering input validation, sensitive data exposure, auth boundaries, idempotency, retries, timeouts, race conditions, and data consistency where applicable.
 
 ## Final Summary
 

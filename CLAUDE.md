@@ -18,6 +18,7 @@ Use these instructions when Claude works in this repository.
 - Avoid broad refactors, cosmetic changes, and unrelated renames.
 - Add abstractions only when they make the solution clearer or align with existing patterns.
 - Use DDD only when there is relevant business logic.
+- In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 - Preserve existing behavior unless a change is explicitly requested.
@@ -27,6 +28,7 @@ Use these instructions when Claude works in this repository.
 - State assumptions explicitly before implementation.
 - If requirements are unclear, stop, name the confusion, and ask.
 - If multiple interpretations are reasonable, present them instead of choosing silently.
+- When ambiguity is meaningful or the user asks to stress-test a plan, use the optional `presets/grill-me.md` workflow to ask one focused question at a time, recommend an answer, and resolve decision dependencies before implementation.
 - Surface meaningful trade-offs and recommend the simplest approach that fits the request.
 - Push back when the requested or implied solution is more complex than the problem requires.
 
@@ -49,7 +51,7 @@ Use these instructions when Claude works in this repository.
 
 ## Before Implementing
 
-First inspect the project structure, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change. Read `docs/project-overview.md` when present to understand the current project shape and decision history. Then briefly state:
+First inspect the project structure, architecture, naming conventions, folder organization, frameworks, libraries, and test style. Follow the existing pattern unless there is a clear reason to propose a change. Read `docs/project-overview.md` when present to understand the current project shape and decision history. If it is missing, inspect the project and suggest creating one before or alongside meaningful implementation work. Then briefly state:
 
 1. Understanding of the problem.
 2. Files expected to change.
@@ -76,7 +78,7 @@ State the recommended path and why it is the best fit for the current scope.
 
 Cover the happy path, error scenarios, relevant business rules, edge cases, and regressions. Use unit tests for main logic and integration or contract tests for external dependencies, webhooks, queues, and APIs.
 
-Run related tests after implementation. If a test cannot be run, explain the exact reason.
+After any code change or implementation, run related tests or validation checks, perform a brief security and reliability assessment, and report the result. If a test cannot be run, explain the exact reason.
 
 If useful improvements are found outside the requested scope, list them separately instead of implementing them without need.
 

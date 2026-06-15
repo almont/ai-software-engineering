@@ -16,6 +16,7 @@ Use these instructions for Codex and other coding agents working in this reposit
 - Keep changes scoped to the requested work.
 - Avoid broad refactors, cosmetic churn, or unrelated renames.
 - Use DDD only when there is relevant business logic.
+- In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 - Preserve backward compatibility unless explicitly requested.
@@ -25,6 +26,7 @@ Use these instructions for Codex and other coding agents working in this reposit
 - State assumptions explicitly before implementation.
 - If requirements are unclear, stop, name the confusion, and ask.
 - If multiple interpretations are reasonable, present them instead of choosing silently.
+- When ambiguity is meaningful or the user asks to stress-test a plan, use the optional `presets/grill-me.md` workflow to ask one focused question at a time, recommend an answer, and resolve decision dependencies before implementation.
 - Surface meaningful trade-offs and recommend the simplest approach that fits the request.
 - Push back when the requested or implied solution is more complex than the problem requires.
 
@@ -47,7 +49,7 @@ Use these instructions for Codex and other coding agents working in this reposit
 
 ## Before Coding
 
-Understand the project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style first. Read `docs/project-overview.md` when present to understand the current project shape and decision history. Follow the existing pattern unless there is a clear reason to propose a change. Then briefly explain the problem, files expected to change, implementation strategy, tests, and risks.
+Understand the project structure, existing patterns, architecture, naming conventions, folder organization, frameworks, libraries, and test style first. Read `docs/project-overview.md` when present to understand the current project shape and decision history. If it is missing, inspect the project and suggest creating one before or alongside meaningful implementation work. Follow the existing pattern unless there is a clear reason to propose a change. Then briefly explain the problem, files expected to change, implementation strategy, tests, and risks.
 
 For multi-step tasks, state a brief goal-driven plan with a verification check for each step.
 
@@ -69,7 +71,7 @@ For non-trivial changes, include a brief trade-off analysis covering simplicity 
 
 ## Tests
 
-Cover happy paths, errors, relevant business rules, edge cases, and regressions. Run related tests after implementation and report results.
+Cover happy paths, errors, relevant business rules, edge cases, and regressions. After any code change or implementation, run related tests or validation checks, perform a brief security and reliability assessment, and report results.
 
 ## Security and Reliability
 

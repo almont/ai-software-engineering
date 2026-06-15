@@ -4,6 +4,10 @@ This repository is a source of truth for AI agent instructions and review preset
 
 All durable documentation copied from this repository should remain in English. Agents should act with Staff Engineer judgment, considering scale, operational risk, long-term maintenance, and system sustainability.
 
+Agents should read `docs/project-overview.md` when present. If it is missing, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
+
+After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
+
 ## New Project Setup
 
 1. Copy `templates/new-project-AGENTS.md` into the target repository as `AGENTS.md`.
@@ -16,13 +20,15 @@ All durable documentation copied from this repository should remain in English. 
 
 1. Use `templates/new-feature-request.md` to describe the feature request.
 2. Use `presets/new-feature-planning.md` to generate a Staff Engineer-level plan.
-3. Review scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback before implementation starts.
-4. Use `presets/implementation-guidelines.md` when the feature is ready to build.
+3. Use `presets/grill-me.md` when the plan has meaningful ambiguity or needs deliberate stress-testing.
+4. Review scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback before implementation starts.
+5. Use `presets/implementation-guidelines.md` when the feature is ready to build.
 
 ## Choosing Presets
 
 - Use `engineering-review.md` for broad staff-level review.
 - Use `new-feature-planning.md` before implementing a non-trivial feature.
+- Use `grill-me.md` when ambiguity is meaningful, the user asks to be grilled, or a plan needs one-question-at-a-time stress-testing.
 - Use `security-review.md` for auth, input, data exposure, uploads, dependencies, or webhook risks.
 - Use `reliability-review.md` for async, queue, webhook, retry, timeout, and production failure risks.
 - Use `test-review.md` before approval when test coverage is uncertain.

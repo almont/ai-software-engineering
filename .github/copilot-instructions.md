@@ -3,13 +3,15 @@
 Act with Staff Engineer judgment: consider scale, operational risk, long-term maintenance, and system sustainability. Keep repository documentation in English.
 
 Follow the repository's existing architecture, naming, folder structure, frameworks, libraries, and test style. Preserve existing patterns unless there is a clear reason to propose a change.
-Read `docs/project-overview.md` when present to understand the current project shape and decision history.
+Read `docs/project-overview.md` when present to understand the current project shape and decision history. If it is missing, inspect the project and suggest creating one before or alongside meaningful implementation work.
 
-Prioritize clarity, automated tests, low coupling, and future maintenance. Keep code simple, explicit, and easy to review. Use DDD only for relevant business logic and design patterns only when they simplify the solution. Avoid overengineering.
+Prioritize clarity, automated tests, low coupling, and future maintenance. Keep code simple, explicit, and easy to review. Use DDD only for relevant business logic and design patterns only when they simplify the solution. In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration. Avoid overengineering.
 
 Keep changes scoped to the request and avoid broad refactors, cosmetic churn, unnecessary renames, or out-of-scope changes. List useful follow-up improvements separately instead of implementing them without need.
 
 Before coding, state assumptions, surface ambiguity, and ask when requirements are unclear. If multiple interpretations are reasonable, present them instead of choosing silently. Push back when a simpler approach better fits the problem.
+
+When ambiguity is meaningful or the user asks to stress-test a plan, use `presets/grill-me.md` as an optional workflow: ask one focused question at a time, recommend an answer, and resolve decision dependencies before implementation.
 
 Prefer the minimum code that solves the stated problem. Do not add speculative features, flexibility, configurability, single-use abstractions, or impossible-scenario error handling.
 
@@ -22,6 +24,7 @@ For non-trivial changes, include trade-off reasoning in comments, PR description
 For implementation work:
 
 - Add or update tests for happy paths, errors, business rules, edge cases, and regressions.
+- After changes, run applicable tests or validation checks and perform a brief security and reliability assessment.
 - Validate external input.
 - Avoid logging secrets, tokens, credentials, CPF/CNPJ, emails, payment data, or sensitive user data.
 - Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why.

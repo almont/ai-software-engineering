@@ -24,6 +24,12 @@ Agents should act as experienced Staff Engineers. They should optimize for:
 
 Agents should think before coding by stating assumptions, surfacing ambiguity, and asking when requirements are unclear. They should prefer the simplest solution that fits the request, make surgical changes only, and turn tasks into verifiable goals with checks for multi-step work.
 
+In legacy projects, agents should not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+
+Agents should read `docs/project-overview.md` when present. If it is missing in a target project, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
+
+After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
+
 All durable repository documentation must be written in English.
 
 ## Core Repository Areas
@@ -48,6 +54,8 @@ The README includes a shell snippet for applying these presets to an existing lo
 ### New Feature Planning
 
 Use `templates/new-feature-request.md` to capture the feature request. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation. Move to `presets/implementation-guidelines.md` only after scope, trade-offs, tests, security, reliability, observability, rollout, and rollback have been reviewed.
+
+Use `presets/grill-me.md` as an optional ambiguity-resolution workflow when a plan needs deliberate stress-testing. The workflow asks one focused question at a time, recommends an answer, and resolves decision dependencies before implementation.
 
 ### Reviews
 
@@ -86,7 +94,11 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - Durable documentation must be written in English.
 - Agents operate with Staff Engineer judgment.
 - Agents must think before coding, state assumptions, surface ambiguity, and avoid silent interpretation when requirements are unclear.
+- Legacy projects should not receive DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+- Agents should suggest creating `docs/project-overview.md` when it is missing in a target project.
+- Meaningful ambiguity can be handled with the optional `presets/grill-me.md` workflow before implementation.
 - Agents prioritize minimum necessary implementation, avoid speculative flexibility, and keep changes surgical.
+- Code changes and implementations should be followed by related tests or validation checks plus a brief security and reliability assessment.
 - Multi-step execution should define verifiable success criteria and checks.
 - Non-trivial work requires explicit trade-off analysis.
 - New feature requests have both a human intake template and an agent planning preset.
