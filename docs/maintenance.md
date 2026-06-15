@@ -10,7 +10,7 @@ All documentation in this repository must be written in English. If a user provi
 2. Mirror relevant guidance into `CLAUDE.md`.
 3. Condense relevant guidance into `.github/copilot-instructions.md`.
 4. Update matching files in `templates/`.
-5. Update `presets/`, `permissions/`, and `examples/` if the change affects them.
+5. Update `presets/`, permission guidance templates, and `examples/` if the change affects them.
 6. Update `docs/project-overview.md` if the project shape, workflow, permission policy, or governance model changed.
 7. Create a decision log entry under `docs/decisions/` for meaningful development decisions.
 8. Review `docs/usage.md` if setup steps changed.
@@ -22,7 +22,7 @@ All documentation in this repository must be written in English. If a user provi
 - All documentation is in English.
 - Agent instructions preserve the Staff Engineer posture.
 - Copilot instructions remain concise.
-- Permission allowlists separate safe local development from approval-required actions.
+- Permission guidance templates separate safe local development from approval-required actions.
 - Presets include concrete focus areas and output expectations.
 - Templates are copy-ready.
 - Examples reference existing files.
@@ -44,7 +44,7 @@ Review the output for:
 
 - References to files that do not exist.
 - Unfinished markers or accidental example secrets.
-- New examples, presets, templates, or permission files missing from usage or overview docs.
+- New examples, presets, templates, or permission guidance missing from usage or overview docs.
 - Drift between `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, matching templates, `README.md`, `docs/usage.md`, and `docs/project-overview.md` when canonical behavior changes.
 
 ## Decision Logs

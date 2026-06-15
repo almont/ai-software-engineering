@@ -17,7 +17,7 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 1. Copy `templates/new-project-AGENTS.md` into the target repository as `AGENTS.md`.
 2. Copy `templates/new-project-CLAUDE.md` into the target repository as `CLAUDE.md` if Claude will work on the project.
 3. Copy `templates/new-project-copilot-instructions.md` into the target repository as `.github/copilot-instructions.md` if GitHub Copilot will be used.
-4. Copy a permission guide from `permissions/` if the team wants documented safe actions.
+4. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if the team wants documented safe actions.
 5. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
 
 ## New Feature Planning
@@ -49,9 +49,9 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 - Use `examples/backend-service.md` for backend APIs and services.
 - Use `examples/frontend-app.md` for frontend applications.
 
-## Permission Guides
+## Permission Guidance
 
-The permission files document common safe local development actions. They are not permission engines by themselves. Use them as policy text when configuring Codex, Claude, or team workflows.
+The permission templates document common safe local development actions. They are not permission engines by themselves. Use them as policy text when configuring Codex, Claude, or team workflows.
 
 ## Project Overview And Decisions
 

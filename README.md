@@ -2,7 +2,7 @@
 
 Reusable AI agent presets for Codex, Claude, GitHub Copilot, and team review workflows.
 
-This repository is intentionally documentation-first. It is a source of truth for agent behavior, review prompts, and safe development permission guidance that can be copied into new projects. There is no install script, package manager, or runtime.
+This repository is intentionally documentation-first. It is a source of truth for agent behavior, review prompts, and safe development permission guidance that can be copied into new projects. Permission guidance is policy text only; it does not grant or enforce tool permissions by itself. There is no install script, package manager, or runtime.
 
 ## Purpose
 
@@ -57,7 +57,6 @@ All durable repository documentation should be written in English.
   .github/
     copilot-instructions.md
   presets/
-  permissions/
   templates/
   examples/
   docs/
@@ -69,8 +68,7 @@ All durable repository documentation should be written in English.
 - `CLAUDE.md`: Claude-compatible project instructions.
 - `.github/copilot-instructions.md`: GitHub Copilot custom instructions.
 - `presets/`: reusable review, implementation, and flow-mapping prompts.
-- `permissions/`: common safe development allowlists for Codex and Claude.
-- `templates/`: copy-ready files and review requests.
+- `templates/`: copy-ready files, review requests, and permission guidance templates.
 - `examples/`: project-specific preset combinations.
 - `docs/`: usage, maintenance, project overview, and decision logs.
 
@@ -80,7 +78,7 @@ All durable repository documentation should be written in English.
 2. Copy `templates/new-project-CLAUDE.md` to `CLAUDE.md` if the project uses Claude.
 3. Copy `templates/new-project-copilot-instructions.md` to `.github/copilot-instructions.md` if the project uses GitHub Copilot.
 4. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
-5. Copy the relevant file from `permissions/` if you want a documented allowlist.
+5. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if you want documented permission guidance.
 
 ## Pull Files Into A Local Project
 
@@ -97,7 +95,7 @@ TMP_DIR="$(mktemp -d)"
 CREATED_FILES="$(mktemp)"
 
 git clone --depth 1 --branch "$SOURCE_REF" --filter=blob:none --sparse "$SOURCE_REPO" "$TMP_DIR"
-git -C "$TMP_DIR" sparse-checkout set templates presets permissions examples
+git -C "$TMP_DIR" sparse-checkout set templates presets examples
 SOURCE_COMMIT="$(git -C "$TMP_DIR" rev-parse HEAD)"
 
 copy_or_incoming() {
@@ -119,7 +117,7 @@ copy_or_incoming "$TMP_DIR/templates/new-project-AGENTS.md" "AGENTS.md"
 copy_or_incoming "$TMP_DIR/templates/new-project-CLAUDE.md" "CLAUDE.md"
 copy_or_incoming "$TMP_DIR/templates/new-project-copilot-instructions.md" ".github/copilot-instructions.md"
 
-for dir in presets permissions templates examples; do
+for dir in presets templates examples; do
   find "$TMP_DIR/$dir" -type f | while read -r src; do
     rel="${src#"$TMP_DIR/"}"
     copy_or_incoming "$src" "$rel"
@@ -184,9 +182,9 @@ The `Created files:` output from the script lists every file written during the 
 - `presets/feature-flow-mapping.md`: end-to-end feature flow mapping.
 - `presets/event-driven-flow-mapping.md`: producer, consumer, payload, retry, ordering, DLQ, and idempotency mapping.
 
-## Permission Guides
+## Permission Guidance
 
-The permission guides define common local development actions that are usually safe:
+The permission templates define common local development actions that are usually safe. They are policy text for humans and agent configuration, not permission engines:
 
 - Read, list, and search files.
 - Inspect git status, diffs, branches, and logs.
@@ -221,7 +219,7 @@ Treat `AGENTS.md` as the canonical source. When standards change:
 2. Mirror relevant guidance into `CLAUDE.md`.
 3. Condense relevant guidance into `.github/copilot-instructions.md`.
 4. Update matching files in `templates/`.
-5. Update `presets/`, `permissions/`, and `examples/` if needed.
+5. Update `presets/`, permission guidance templates, and `examples/` if needed.
 6. Review `docs/usage.md` and `docs/maintenance.md`.
 7. Update `docs/project-overview.md` when the project shape or workflow changes.
 8. Add a decision log entry under `docs/decisions/` for meaningful development decisions.
