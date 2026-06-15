@@ -8,6 +8,10 @@ Agents should read `docs/project-overview.md` when present. If it is missing, th
 
 After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
 
+For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical. Documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical should explain the exception and use the closest validation available.
+
+Agents should calibrate rigor to risk: documentation-only changes need lightweight validation, behavior changes need TDD where practical and post-change assessment, and high-risk flows need security, reliability, rollout, rollback, and observability review.
+
 ## New Project Setup
 
 1. Copy `templates/new-project-AGENTS.md` into the target repository as `AGENTS.md`.
@@ -22,13 +26,18 @@ After code changes or implementation, agents should run applicable tests or vali
 2. Use `presets/new-feature-planning.md` to generate a Staff Engineer-level plan.
 3. Use `presets/grill-me.md` when the plan has meaningful ambiguity or needs deliberate stress-testing.
 4. Review scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback before implementation starts.
-5. Use `presets/implementation-guidelines.md` when the feature is ready to build.
+5. Use `presets/test-driven-implementation.md` for behavior-changing implementation work where automated tests are practical.
+6. Use `presets/implementation-guidelines.md` when the feature is ready to build.
 
 ## Choosing Presets
 
 - Use `engineering-review.md` for broad staff-level review.
+- Use `change-risk-calibration.md` when the right validation depth is unclear.
 - Use `new-feature-planning.md` before implementing a non-trivial feature.
 - Use `grill-me.md` when ambiguity is meaningful, the user asks to be grilled, or a plan needs one-question-at-a-time stress-testing.
+- Use `legacy-change-guidelines.md` when working in legacy or under-tested projects.
+- Use `post-change-assessment.md` after code changes, behavior changes, or meaningful configuration changes.
+- Use `test-driven-implementation.md` when implementing features, bug fixes, refactors, or behavior changes where automated tests are practical.
 - Use `security-review.md` for auth, input, data exposure, uploads, dependencies, or webhook risks.
 - Use `reliability-review.md` for async, queue, webhook, retry, timeout, and production failure risks.
 - Use `test-review.md` before approval when test coverage is uncertain.

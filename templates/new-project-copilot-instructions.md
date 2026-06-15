@@ -6,7 +6,9 @@ Follow existing architecture, naming, folder structure, frameworks, libraries, a
 
 Prioritize clarity, automated tests, low coupling, and future maintenance. Keep changes scoped to the request. Prefer simple, explicit, maintainable code over clever abstractions.
 
-Use DDD only when there is relevant business logic. In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration. Use design patterns only when they simplify the solution. Avoid overengineering.
+Use DDD only when there is relevant business logic. In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration. Use design patterns only when they simplify the solution. Avoid overengineering.
+
+Calibrate rigor to risk with `presets/change-risk-calibration.md` when available: documentation-only changes need lightweight validation; behavior changes need TDD where practical and post-change assessment; high-risk flows need security, reliability, rollout, rollback, and observability review.
 
 Before coding, state assumptions, surface ambiguity, and ask when requirements are unclear. If multiple interpretations are reasonable, present them instead of choosing silently. When ambiguity is meaningful or the user asks to stress-test a plan, use `presets/grill-me.md` as an optional workflow: ask one focused question at a time, recommend an answer, and resolve decision dependencies before implementation. Push back when a simpler approach better fits the problem.
 
@@ -20,7 +22,9 @@ Avoid broad refactors, cosmetic changes, unnecessary renames, or out-of-scope ch
 
 For non-trivial changes, include trade-off reasoning when useful. Consider simplicity vs flexibility, short-term delivery vs long-term maintenance, performance vs readability, coupling vs duplication, operational safety vs speed, and backward compatibility vs cleaner design.
 
-Add or update tests for happy paths, errors, business rules, edge cases, and regressions. After changes, run applicable tests or validation checks and perform a brief security and reliability assessment.
+Use test-driven development by default for feature work, bug fixes, refactors, and behavior changes when automated tests are practical: failing test or reproduction first, smallest passing change second, refactor only after green.
+
+Add or update tests for happy paths, errors, business rules, edge cases, and regressions. After changes, use `presets/post-change-assessment.md` when available: run applicable tests or validation checks and perform a brief security and reliability assessment.
 
 Validate external input. Do not log secrets, credentials, API keys, personal data, regulated data, or tokens. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why.
 

@@ -18,7 +18,7 @@ List likely files, modules, services, APIs, UI surfaces, jobs, events, database 
 
 Describe the implementation strategy. Keep the scope small, explicit, and easy to review. Follow existing patterns unless there is a clear reason to propose a change.
 
-For legacy projects, do not recommend DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requested that migration.
+Use `presets/change-risk-calibration.md` to state the expected level of rigor. For legacy projects, use `presets/legacy-change-guidelines.md` and do not recommend DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requested that migration.
 
 ## Trade-Off Analysis
 
@@ -35,6 +35,13 @@ Consider:
 
 ## Testing Plan
 
+Define the test-driven implementation path:
+
+- First failing test or reproduction.
+- Expected failure before implementation.
+- Smallest implementation step to make it pass.
+- Related tests to run after the focused test passes.
+
 Define automated tests for:
 
 - Happy path.
@@ -49,7 +56,7 @@ Mention any integration, contract, or end-to-end tests needed for external depen
 
 Call out risks around input validation, authentication, authorization, sensitive data, unsafe logs, idempotency, duplicate processing, race conditions, retries, timeouts, dead-letter behavior, data consistency, and meaningful logs.
 
-Include the post-change verification expectation: run related tests or validation checks and perform a brief security and reliability assessment after implementation.
+Include the post-change verification expectation from `presets/post-change-assessment.md`: run related tests or validation checks and perform a brief security and reliability assessment after implementation.
 
 ## Rollout And Rollback
 

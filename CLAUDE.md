@@ -18,7 +18,7 @@ Use these instructions when Claude works in this repository.
 - Avoid broad refactors, cosmetic changes, and unrelated renames.
 - Add abstractions only when they make the solution clearer or align with existing patterns.
 - Use DDD only when there is relevant business logic.
-- In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+- In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 - Preserve existing behavior unless a change is explicitly requested.
@@ -61,6 +61,8 @@ First inspect the project structure, architecture, naming conventions, folder or
 
 For multi-step tasks, state a brief goal-driven plan with a verification check for each step.
 
+Calibrate rigor to risk using `presets/change-risk-calibration.md` when scope or risk is not obvious. Documentation-only changes need lightweight validation; behavior changes need TDD where practical and post-change assessment; high-risk flows need security, reliability, rollout, rollback, and observability review.
+
 ## Trade-Off Analysis
 
 For non-trivial changes, include a brief trade-off analysis before implementation:
@@ -76,9 +78,13 @@ State the recommended path and why it is the best fit for the current scope.
 
 ## Testing
 
+Use test-driven development as the default for feature work, bug fixes, refactors, and behavior changes when automated tests are practical: write or identify the smallest failing test or reproduction first, confirm it fails for the expected reason, implement the smallest change to pass, then refactor with tests green.
+
+For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the closest validation available.
+
 Cover the happy path, error scenarios, relevant business rules, edge cases, and regressions. Use unit tests for main logic and integration or contract tests for external dependencies, webhooks, queues, and APIs.
 
-After any code change or implementation, run related tests or validation checks, perform a brief security and reliability assessment, and report the result. If a test cannot be run, explain the exact reason.
+After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks, perform a brief security and reliability assessment, and report the result. If a test cannot be run, explain the exact reason.
 
 If useful improvements are found outside the requested scope, list them separately instead of implementing them without need.
 

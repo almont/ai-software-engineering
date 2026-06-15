@@ -16,11 +16,15 @@ Before implementing, inspect the current structure, existing patterns, architect
 
 For multi-step work, define verifiable success criteria and a brief plan with a check for each step. Iterate until the checks pass or the blocker is clearly explained.
 
-Use DDD only when there is relevant business logic. In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration. Use design patterns only when they simplify the solution. Avoid overengineering.
+Use DDD only when there is relevant business logic. In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration. Use design patterns only when they simplify the solution. Avoid overengineering.
+
+Calibrate rigor to risk using `presets/change-risk-calibration.md` when scope or risk is not obvious. Documentation-only changes need lightweight validation; behavior changes need TDD where practical and post-change assessment; high-risk flows need security, reliability, rollout, rollback, and observability review.
 
 For non-trivial changes, include a brief trade-off analysis covering simplicity vs flexibility, short-term delivery vs long-term maintenance, performance vs readability, coupling vs duplication, operational safety vs implementation speed, and backward compatibility vs cleaner design. State the recommended path and why it fits the current scope.
 
-Add or update tests for happy paths, errors, business rules, edge cases, and regressions. After any code change or implementation, run related tests or validation checks, perform a brief security and reliability assessment, and report the result.
+Use test-driven development as the default for feature work, bug fixes, refactors, and behavior changes when automated tests are practical: write or identify the smallest failing test or reproduction first, confirm it fails for the expected reason, implement the smallest change to pass, then refactor with tests green. For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the closest validation available.
+
+Add or update tests for happy paths, errors, business rules, edge cases, and regressions. After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks, perform a brief security and reliability assessment, and report the result.
 
 Validate external input. Do not expose secrets, tokens, API keys, credentials, personal data, regulated data, or other sensitive data in logs. Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why. Watch auth boundaries, idempotency, duplicate processing, race conditions, retries, timeouts, observability, and data consistency.
 

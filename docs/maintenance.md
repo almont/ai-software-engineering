@@ -18,6 +18,7 @@ All documentation in this repository must be written in English. If a user provi
 ## Consistency Checklist
 
 - Codex, Claude, and Copilot instructions do not contradict each other.
+- New canonical guidance appears in the matching Claude, Copilot, template, usage, README, and overview files where relevant.
 - All documentation is in English.
 - Agent instructions preserve the Staff Engineer posture.
 - Copilot instructions remain concise.
@@ -44,6 +45,7 @@ Review the output for:
 - References to files that do not exist.
 - Unfinished markers or accidental example secrets.
 - New examples, presets, templates, or permission files missing from usage or overview docs.
+- Drift between `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, matching templates, `README.md`, `docs/usage.md`, and `docs/project-overview.md` when canonical behavior changes.
 
 ## Decision Logs
 

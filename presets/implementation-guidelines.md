@@ -14,7 +14,7 @@ Apply to any feature implementation or bug fix.
 - Keep code simple, explicit, and easy to review.
 - Follow the existing project structure and conventions.
 - Use DDD only when there is relevant business logic.
-- In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+- In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 
@@ -57,6 +57,14 @@ Then briefly explain:
 
 For multi-step tasks, state a brief goal-driven plan with a verification check for each step.
 
+## Risk Calibration
+
+Use `presets/change-risk-calibration.md` when scope or risk is not obvious:
+
+- Documentation-only or non-behavioral changes need lightweight validation.
+- Behavior changes need TDD where practical and post-change assessment.
+- High-risk flows need security, reliability, rollout, rollback, and observability review.
+
 ## Trade-Off Analysis
 
 For non-trivial changes, include a brief trade-off analysis before implementation:
@@ -86,6 +94,15 @@ State the recommended path and why it is the best fit for the current scope.
 
 ## Required Tests
 
+Use test-driven development as the default for feature work, bug fixes, refactors, and behavior changes when automated tests are practical:
+
+1. Write or identify the smallest failing test or reproduction first.
+2. Run it and confirm it fails for the expected reason.
+3. Implement the smallest change needed to pass.
+4. Refactor only after the tests are green.
+
+For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the closest validation available.
+
 Cover:
 
 - Happy path.
@@ -93,7 +110,7 @@ Cover:
 - Relevant business rules.
 - Edge cases.
 
-After any code change or implementation, run related tests or validation checks and report the result. If they cannot run, explain exactly why.
+After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks and report the result. If they cannot run, explain exactly why.
 
 ## Security and Compatibility
 

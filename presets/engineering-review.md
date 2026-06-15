@@ -10,6 +10,7 @@ Review for:
 - Reliability risks.
 - Observability gaps.
 - Missing tests.
+- Missing test-first evidence for feature work, bug fixes, refactors, or behavior changes where automated tests were practical.
 - Architecture consistency.
 - Operational risks in production.
 - Rollout and rollback strategy.

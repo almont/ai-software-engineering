@@ -7,6 +7,8 @@ Read `docs/project-overview.md` when present to understand the current project s
 
 Prioritize clarity, automated tests, low coupling, and future maintenance. Keep code simple, explicit, and easy to review. Use DDD only for relevant business logic and design patterns only when they simplify the solution. In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration. Avoid overengineering.
 
+Calibrate rigor to risk with `presets/change-risk-calibration.md` when available: documentation-only changes need lightweight validation; behavior changes need TDD where practical and post-change assessment; high-risk flows need security, reliability, rollout, rollback, and observability review.
+
 Keep changes scoped to the request and avoid broad refactors, cosmetic churn, unnecessary renames, or out-of-scope changes. List useful follow-up improvements separately instead of implementing them without need.
 
 Before coding, state assumptions, surface ambiguity, and ask when requirements are unclear. If multiple interpretations are reasonable, present them instead of choosing silently. Push back when a simpler approach better fits the problem.
@@ -23,8 +25,9 @@ For non-trivial changes, include trade-off reasoning in comments, PR description
 
 For implementation work:
 
+- Use test-driven development by default for feature work, bug fixes, refactors, and behavior changes when automated tests are practical: failing test or reproduction first, smallest passing change second, refactor only after green.
 - Add or update tests for happy paths, errors, business rules, edge cases, and regressions.
-- After changes, run applicable tests or validation checks and perform a brief security and reliability assessment.
+- After changes, use `presets/post-change-assessment.md` when available: run applicable tests or validation checks and perform a brief security and reliability assessment.
 - Validate external input.
 - Avoid logging secrets, tokens, credentials, CPF/CNPJ, emails, payment data, or sensitive user data.
 - Do not change global config, CI/CD, authentication, permissions, or infrastructure without explaining why.

@@ -7,9 +7,12 @@ Recommended files to copy:
 
 Recommended presets:
 
+- `presets/change-risk-calibration.md`.
 - `presets/engineering-review.md`.
+- `presets/post-change-assessment.md`.
 - `presets/security-review.md`.
 - `presets/test-review.md`.
+- `presets/test-driven-implementation.md`.
 
 Extra review focus:
 
@@ -19,4 +22,3 @@ Extra review focus:
 - Error states.
 - Accessibility.
 - Regression tests for critical user flows.
-

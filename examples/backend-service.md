@@ -9,10 +9,14 @@ Recommended files to copy:
 
 Recommended presets:
 
+- `presets/change-risk-calibration.md`.
 - `presets/engineering-review.md`.
+- `presets/legacy-change-guidelines.md`.
+- `presets/post-change-assessment.md`.
 - `presets/security-review.md`.
 - `presets/reliability-review.md`.
 - `presets/test-review.md`.
+- `presets/test-driven-implementation.md`.
 - `presets/feature-flow-mapping.md`.
 
 Extra review focus:
@@ -22,4 +26,3 @@ Extra review focus:
 - Database writes.
 - API compatibility.
 - Observability around external calls and failures.
-

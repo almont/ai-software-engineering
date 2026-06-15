@@ -9,6 +9,7 @@ This repository is intentionally documentation-first. It is a source of truth fo
 Use this repository to standardize how AI agents work across projects:
 
 - How agents should implement features and fixes.
+- How agents should apply test-driven development where practical.
 - How agents should plan new features before implementation.
 - How agents should review code.
 - How agents should reason about security, reliability, tests, and trade-offs.
@@ -39,6 +40,10 @@ In legacy projects, agents should not introduce DDD layers, new architectural pa
 Agents should read `docs/project-overview.md` when present. If it is missing, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
 
 After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
+
+For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical: write or identify a failing test or reproduction first, make the smallest passing change, then refactor while tests stay green.
+
+Agents should calibrate rigor to risk: documentation-only changes need lightweight validation, behavior changes need TDD where practical and post-change assessment, and high-risk flows need security, reliability, rollout, rollback, and observability review.
 
 All durable repository documentation should be written in English.
 
@@ -160,7 +165,8 @@ The `Created files:` output from the script lists every file written during the 
 2. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation.
 3. Use `presets/grill-me.md` when the plan has meaningful ambiguity or needs a deliberate stress test before implementation.
 4. Review the plan for scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback.
-5. Only then move into implementation using `presets/implementation-guidelines.md`.
+5. Use `presets/test-driven-implementation.md` for behavior-changing implementation work where automated tests are practical.
+6. Only then move into implementation using `presets/implementation-guidelines.md`.
 
 ## Available Presets
 
@@ -169,7 +175,11 @@ The `Created files:` output from the script lists every file written during the 
 - `presets/reliability-review.md`: reliability review for retries, timeouts, idempotency, race conditions, dead-letter queues, partial failures, observability, rollback, and data consistency.
 - `presets/test-review.md`: test coverage review for unit, integration, contract, happy path, error path, edge case, and regression coverage.
 - `presets/new-feature-planning.md`: Staff Engineer-level feature planning before implementation.
+- `presets/change-risk-calibration.md`: lightweight guide for choosing validation depth by change risk.
 - `presets/grill-me.md`: optional ambiguity-resolution interview for stress-testing plans and resolving decision dependencies before implementation.
+- `presets/legacy-change-guidelines.md`: guidance for safe changes in legacy or under-tested projects.
+- `presets/post-change-assessment.md`: post-change checklist for tests, security, reliability, compatibility, rollout, and observability.
+- `presets/test-driven-implementation.md`: test-first implementation workflow for features, bug fixes, refactors, and behavior changes where automated tests are practical.
 - `presets/implementation-guidelines.md`: implementation workflow for feature work and bug fixes.
 - `presets/feature-flow-mapping.md`: end-to-end feature flow mapping.
 - `presets/event-driven-flow-mapping.md`: producer, consumer, payload, retry, ordering, DLQ, and idempotency mapping.

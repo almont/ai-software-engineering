@@ -30,6 +30,10 @@ Agents should read `docs/project-overview.md` when present. If it is missing in 
 
 After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
 
+For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical. Documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical should explain the exception and use the closest validation available.
+
+Agents should calibrate rigor to risk: documentation-only changes need lightweight validation, behavior changes need TDD where practical and post-change assessment, and high-risk flows need security, reliability, rollout, rollback, and observability review.
+
 All durable repository documentation must be written in English.
 
 ## Core Repository Areas
@@ -56,6 +60,10 @@ The README includes a shell snippet for applying these presets to an existing lo
 Use `templates/new-feature-request.md` to capture the feature request. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation. Move to `presets/implementation-guidelines.md` only after scope, trade-offs, tests, security, reliability, observability, rollout, and rollback have been reviewed.
 
 Use `presets/grill-me.md` as an optional ambiguity-resolution workflow when a plan needs deliberate stress-testing. The workflow asks one focused question at a time, recommends an answer, and resolves decision dependencies before implementation.
+
+Use `presets/test-driven-implementation.md` for behavior-changing implementation work where automated tests are practical.
+
+Use `presets/change-risk-calibration.md` when the required validation depth is unclear. Use `presets/legacy-change-guidelines.md` for legacy or under-tested projects. Use `presets/post-change-assessment.md` after code changes or meaningful configuration changes.
 
 ### Reviews
 
@@ -99,6 +107,8 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - Meaningful ambiguity can be handled with the optional `presets/grill-me.md` workflow before implementation.
 - Agents prioritize minimum necessary implementation, avoid speculative flexibility, and keep changes surgical.
 - Code changes and implementations should be followed by related tests or validation checks plus a brief security and reliability assessment.
+- Test-driven development is the default for feature work, bug fixes, refactors, and behavior changes where automated tests are practical.
+- Rigor should scale to change risk through reusable calibration and post-change assessment presets.
 - Multi-step execution should define verifiable success criteria and checks.
 - Non-trivial work requires explicit trade-off analysis.
 - New feature requests have both a human intake template and an agent planning preset.

@@ -18,7 +18,7 @@ Use these instructions for Codex and other coding agents working in this reposit
 - Avoid broad refactors, cosmetic churn, or unrelated renames.
 - Use abstractions only when they reduce real complexity or match existing patterns.
 - Use DDD only when there is relevant business logic.
-- In legacy projects, do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+- In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 - Preserve backward compatibility unless the task explicitly requires a behavior change.
@@ -65,6 +65,8 @@ For implementation tasks, briefly explain:
 
 For multi-step tasks, state a brief goal-driven plan with a verification check for each step.
 
+Calibrate rigor to risk using `presets/change-risk-calibration.md` when scope or risk is not obvious. Documentation-only changes need lightweight validation; behavior changes need TDD where practical and post-change assessment; high-risk flows need security, reliability, rollout, rollback, and observability review.
+
 ## Trade-Off Analysis
 
 For non-trivial changes, include a brief trade-off analysis before implementation:
@@ -78,7 +80,7 @@ For non-trivial changes, include a brief trade-off analysis before implementatio
 
 State the recommended path and why it is the best fit for the current scope.
 
-After any code change or implementation, run related tests or validation checks, perform a brief security and reliability assessment, and report the result. If tests cannot run, explain exactly why.
+After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks, perform a brief security and reliability assessment, and report the result. If tests cannot run, explain exactly why.
 
 If you find useful improvements outside the requested scope, list them as follow-up suggestions instead of implementing them without need.
 
@@ -99,6 +101,10 @@ If you find useful improvements outside the requested scope, list them as follow
 - Keep all durable repository documentation in English.
 
 ## Testing Expectations
+
+Use test-driven development as the default for feature work, bug fixes, refactors, and behavior changes when automated tests are practical: write or identify the smallest failing test or reproduction first, confirm it fails for the expected reason, implement the smallest change to pass, then refactor with tests green.
+
+For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the closest validation available.
 
 Cover:
 
