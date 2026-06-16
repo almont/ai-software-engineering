@@ -1,6 +1,6 @@
 # AI Presets Boilerplate
 
-Reusable AI agent presets for Codex, Claude, GitHub Copilot, and team review workflows.
+Reusable AI agent instructions, presets, and team review workflows centered on one canonical `CLAUDE.md` file.
 
 This repository is intentionally documentation-first. It is a source of truth for agent behavior, review prompts, and safe development permission guidance that can be copied into new projects. Permission guidance is policy text only; it does not grant or enforce tool permissions by itself. There is no install script, package manager, or runtime.
 
@@ -52,10 +52,7 @@ All durable repository documentation should be written in English.
 ```text
 /
   README.md
-  AGENTS.md
   CLAUDE.md
-  .github/
-    copilot-instructions.md
   presets/
   templates/
   examples/
@@ -64,9 +61,7 @@ All durable repository documentation should be written in English.
 
 ## Core Files
 
-- `AGENTS.md`: canonical Codex instructions for new repositories.
-- `CLAUDE.md`: Claude-compatible project instructions.
-- `.github/copilot-instructions.md`: GitHub Copilot custom instructions.
+- `CLAUDE.md`: canonical AI agent instructions for new repositories.
 - `presets/`: reusable review, implementation, and flow-mapping prompts.
 - `templates/`: copy-ready files, review requests, and permission guidance templates.
 - `examples/`: project-specific preset combinations.
@@ -74,11 +69,10 @@ All durable repository documentation should be written in English.
 
 ## How To Use In A New Project
 
-1. Copy `templates/new-project-AGENTS.md` to `AGENTS.md` in a target repository.
-2. Copy `templates/new-project-CLAUDE.md` to `CLAUDE.md` if the project uses Claude.
-3. Copy `templates/new-project-copilot-instructions.md` to `.github/copilot-instructions.md` if the project uses GitHub Copilot.
-4. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
-5. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if you want documented permission guidance.
+1. Copy `templates/new-project-CLAUDE.md` to `CLAUDE.md` in a target repository.
+2. Configure or prompt any AI tools that do not discover `CLAUDE.md` automatically to read it before working.
+3. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
+4. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if you want documented permission guidance.
 
 ## Pull Files Into A Local Project
 
@@ -113,9 +107,7 @@ copy_or_incoming() {
   fi
 }
 
-copy_or_incoming "$TMP_DIR/templates/new-project-AGENTS.md" "AGENTS.md"
 copy_or_incoming "$TMP_DIR/templates/new-project-CLAUDE.md" "CLAUDE.md"
-copy_or_incoming "$TMP_DIR/templates/new-project-copilot-instructions.md" ".github/copilot-instructions.md"
 
 for dir in presets templates examples; do
   find "$TMP_DIR/$dir" -type f | while read -r src; do
@@ -213,16 +205,14 @@ They also define actions that require explicit approval:
 
 ## Maintenance Rules
 
-Treat `AGENTS.md` as the canonical source. When standards change:
+Treat `CLAUDE.md` as the canonical source. When standards change:
 
-1. Update `AGENTS.md`.
-2. Mirror relevant guidance into `CLAUDE.md`.
-3. Condense relevant guidance into `.github/copilot-instructions.md`.
-4. Update matching files in `templates/`.
-5. Update `presets/`, permission guidance templates, and `examples/` if needed.
-6. Review `docs/usage.md` and `docs/maintenance.md`.
-7. Update `docs/project-overview.md` when the project shape or workflow changes.
-8. Add a decision log entry under `docs/decisions/` for meaningful development decisions.
+1. Update `CLAUDE.md`.
+2. Update matching files in `templates/`.
+3. Update `presets/`, permission guidance templates, and `examples/` if needed.
+4. Review `docs/usage.md` and `docs/maintenance.md`.
+5. Update `docs/project-overview.md` when the project shape or workflow changes.
+6. Add a decision log entry under `docs/decisions/` for meaningful development decisions.
 
 Keep documentation in English, even when the original request or conversation is in another language.
 

@@ -1,6 +1,6 @@
-# Claude Project Instructions
+# AI Agent Project Instructions
 
-Use these instructions when Claude works in this repository.
+Use these instructions when any AI agent works in this repository. `CLAUDE.md` is the canonical instruction file for this project. Tools that do not discover `CLAUDE.md` automatically should be configured or prompted to read it before working.
 
 ## Role and Communication
 

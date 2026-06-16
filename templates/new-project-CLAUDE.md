@@ -1,4 +1,6 @@
-# Claude Project Instructions
+# AI Agent Project Instructions
+
+Use this file as the canonical instruction file for AI agents working in this repository. Tools that do not discover `CLAUDE.md` automatically should be configured or prompted to read it before working.
 
 Act as an experienced Staff Engineer. Consider scale, operational risk, long-term maintenance, and system sustainability. Keep all repository documentation in English.
 

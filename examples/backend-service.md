@@ -2,9 +2,7 @@
 
 Recommended files to copy:
 
-- `templates/new-project-AGENTS.md` to `AGENTS.md`.
 - `templates/new-project-CLAUDE.md` to `CLAUDE.md`.
-- `templates/new-project-copilot-instructions.md` to `.github/copilot-instructions.md`.
 - `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md`.
 
 Recommended presets:

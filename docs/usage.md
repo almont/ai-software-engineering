@@ -14,11 +14,10 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 
 ## New Project Setup
 
-1. Copy `templates/new-project-AGENTS.md` into the target repository as `AGENTS.md`.
-2. Copy `templates/new-project-CLAUDE.md` into the target repository as `CLAUDE.md` if Claude will work on the project.
-3. Copy `templates/new-project-copilot-instructions.md` into the target repository as `.github/copilot-instructions.md` if GitHub Copilot will be used.
-4. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if the team wants documented safe actions.
-5. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
+1. Copy `templates/new-project-CLAUDE.md` into the target repository as `CLAUDE.md`.
+2. Configure or prompt AI tools that do not discover `CLAUDE.md` automatically to read it before working.
+3. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if the team wants documented safe actions.
+4. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
 
 ## New Feature Planning
 

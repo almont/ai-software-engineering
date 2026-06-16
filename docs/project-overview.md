@@ -4,7 +4,7 @@ This document is the living overview for the AI Presets Boilerplate repository. 
 
 ## Purpose
 
-This repository provides reusable AI agent presets for Codex, Claude, GitHub Copilot, and team review workflows. It standardizes how agents plan work, implement features, review code, reason about trade-offs, and document safe development permission guidance.
+This repository provides reusable AI agent instructions, presets, and team review workflows centered on one canonical `CLAUDE.md` file. It standardizes how agents plan work, implement features, review code, reason about trade-offs, and document safe development permission guidance.
 
 Permission guidance is policy text only. It does not grant or enforce tool permissions by itself.
 
@@ -40,9 +40,7 @@ All durable repository documentation must be written in English.
 
 ## Core Repository Areas
 
-- `AGENTS.md`: canonical instructions for Codex and similar coding agents.
-- `CLAUDE.md`: Claude-compatible project instructions.
-- `.github/copilot-instructions.md`: concise GitHub Copilot custom instructions.
+- `CLAUDE.md`: canonical AI agent instructions.
 - `presets/`: reusable prompts for planning, implementation, review, reliability, security, tests, and flow mapping.
 - `templates/`: copy-ready request templates, project setup files, and permission guidance templates.
 - `examples/`: project-type examples showing which presets and templates to combine.
@@ -52,7 +50,7 @@ All durable repository documentation must be written in English.
 
 ### New Project Setup
 
-Use the `templates/new-project-*` files to copy agent instructions into a new repository. Add permission guidance from `templates/*-allow-permissions.md` when the team wants explicit allowlist policy text.
+Use `templates/new-project-CLAUDE.md` to copy canonical agent instructions into a new repository. Configure or prompt tools that do not discover `CLAUDE.md` automatically to read it before working. Add permission guidance from `templates/*-allow-permissions.md` when the team wants explicit allowlist policy text.
 
 The README includes a shell snippet for applying these presets to an existing local repository. The snippet copies files directly into the target repository structure, writes `.incoming` files instead of overwriting existing files, and records the source repository commit in `docs/ai-presets-source.md`.
 
@@ -99,7 +97,7 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 ## Current Design Decisions
 
 - The repository is documentation-first and script-free.
-- `AGENTS.md` is the canonical source for agent behavior.
+- `CLAUDE.md` is the canonical source for agent behavior across AI tools.
 - Durable documentation must be written in English.
 - Agents operate with Staff Engineer judgment.
 - Agents must think before coding, state assumptions, surface ambiguity, and avoid silent interpretation when requirements are unclear.
@@ -118,3 +116,4 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - Documentation validation is maintained as a lightweight checklist rather than a runtime test suite or apply script.
 - The local import workflow applies files directly to their expected target paths and uses `.incoming` files for reviewable conflicts.
 - Permission guidance is kept under `templates/` because it is policy text and does not grant permissions by itself.
+- Tool-specific instruction files such as `AGENTS.md` and `.github/copilot-instructions.md` are intentionally not maintained; tools should be pointed at `CLAUDE.md` instead.
