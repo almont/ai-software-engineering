@@ -72,7 +72,7 @@ All durable repository documentation should be written in English.
 
 1. Copy `templates/new-project-CLAUDE.md` to `CLAUDE.md` in a target repository.
 2. Configure or prompt any AI tools that do not discover `CLAUDE.md` automatically to read it before working.
-3. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
+3. Copy `presets/` and `templates/` completely into the target repository.
 4. Copy `templates/project-overview.md` to `docs/project-overview.md` if the target repository does not already have a project overview.
 
 ## Adopt These Presets With An AI Agent
@@ -110,18 +110,21 @@ Then inspect the source presets repository:
 - Read `templates/new-project-CLAUDE.md`.
 - Read `templates/project-overview.md`.
 - Read available files under `presets/`, `templates/`, and `examples/`.
-- Use only the guidance that is relevant to this target project.
+- Treat `presets/` and `templates/` as operational assets that must be copied completely, not filtered by immediate relevance.
 
 Apply the presets conservatively:
 
+- Copy `presets/` and `templates/` completely and recursively, preserving every file, subdirectory, hidden file, example, asset, and seemingly unused item.
+- Do not copy only the files that look relevant or useful for the immediate task.
+- Do not simplify, deduplicate, reorganize, or remove files from `presets/` or `templates/` during adoption unless I explicitly approve the removal.
 - If `CLAUDE.md` is missing, create it from `templates/new-project-CLAUDE.md` and adapt it to the target project.
-- If `CLAUDE.md` already exists, merge useful guidance into it without replacing project-specific content.
+- If `CLAUDE.md` already exists, merge source guidance into it without replacing or filtering project-specific content.
 - Preserve existing architecture notes, business rules, commands, testing guidance, deployment notes, ownership boundaries, and team conventions.
-- If other instruction files exist, do not delete or rewrite them unless I explicitly ask. Instead, recommend whether they should point to `CLAUDE.md` or remain separate.
+- If other instruction files exist, read them completely and preserve their operational instructions, conventions, commands, architecture notes, testing guidance, restrictions, and warnings.
+- Other instruction files may be merged into `CLAUDE.md`, but merging must not become selective copying, summarizing, or filtering based on what looks necessary.
+- If other instruction files remain separate, do not delete or rewrite them unless I explicitly ask. Instead, recommend whether they should point to `CLAUDE.md` or remain separate.
 - If `docs/project-overview.md` is missing, create it from `templates/project-overview.md` and adapt it by inspecting the target repository.
 - If `docs/project-overview.md` already exists, update it only where the source template reveals useful missing sections.
-- Copy or adapt relevant presets from `presets/` only if they are useful for this target project.
-- Copy or adapt relevant request templates from `templates/` only if they are useful for this target project.
 - Do not add permission guidance unless explicitly requested.
 - Do not blindly overwrite existing files.
 
@@ -129,6 +132,7 @@ When content overlaps or conflicts:
 
 - Prefer target repository-specific guidance over generic source guidance.
 - Preserve legacy constraints even when they conflict with idealized architecture.
+- Preserve conflicting instruction content and mark the conflict for human review instead of silently choosing one side.
 - Do not introduce DDD layers, DDD terminology, new architectural patterns, structural migrations, or tool changes unless the project already uses them or I explicitly request that migration.
 - Explain each conflict and recommend the safest merge.
 - Ask before removing existing project-specific instructions.
@@ -149,7 +153,9 @@ After editing, report:
 3. What was preserved from the target repository.
 4. What was intentionally left out.
 5. Conflicts or trade-offs resolved.
-6. Validation performed.
+6. Confirmation that `presets/` and `templates/` were copied completely.
+7. Confirmation that instruction content was preserved or merged without relevance filtering.
+8. Validation performed.
 ```
 
 ## How To Plan A New Feature

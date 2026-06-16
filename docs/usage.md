@@ -18,10 +18,10 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 
 1. Copy `templates/new-project-CLAUDE.md` into the target repository as `CLAUDE.md`.
 2. Configure or prompt AI tools that do not discover `CLAUDE.md` automatically to read it before working.
-3. Copy `templates/project-overview.md` to `docs/project-overview.md` if the target repository does not already have a project overview.
-4. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
+3. Copy `presets/` and `templates/` completely into the target repository, preserving every file and subdirectory.
+4. Copy `templates/project-overview.md` to `docs/project-overview.md` if the target repository does not already have a project overview.
 
-For existing or legacy repositories, prefer the README's agent-driven adoption prompt. It instructs the agent to inspect the target repository first, preserve project-specific guidance, merge duplicate content conservatively, and avoid blind overwrites.
+For existing or legacy repositories, prefer the README's agent-driven adoption prompt. It instructs the agent to inspect the target repository first, preserve project-specific guidance, copy `presets/` and `templates/` completely, merge instruction files into `CLAUDE.md` without relevance filtering, merge duplicate content conservatively, and avoid blind overwrites.
 
 ## New Feature Planning
 
