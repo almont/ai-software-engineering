@@ -30,7 +30,7 @@ In legacy projects, agents should not introduce DDD layers, new architectural pa
 
 Agents should read `docs/project-overview.md` when present. If it is missing in a target project, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
 
-After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
+After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment. For frontend changes, agents should include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected. If the project uses Playwright, Cypress, or another end-to-end framework, agents should run related tests for affected flows when practical.
 
 For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical. Documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical should explain the exception and use the closest validation available.
 
@@ -42,7 +42,7 @@ All durable repository documentation must be written in English.
 
 - `CLAUDE.md`: canonical AI agent instructions.
 - `presets/`: reusable prompts for planning, implementation, review, reliability, security, tests, and flow mapping.
-- `templates/`: copy-ready request templates, project setup files, and permission guidance templates.
+- `templates/`: copy-ready request templates, project setup files, project overview template, and permission guidance templates.
 - `examples/`: project-type examples showing which presets and templates to combine.
 - `docs/`: usage, maintenance, project overview, and decision logs.
 
@@ -52,13 +52,15 @@ All durable repository documentation must be written in English.
 
 Use `templates/new-project-CLAUDE.md` to copy canonical agent instructions into a new repository. Configure or prompt tools that do not discover `CLAUDE.md` automatically to read it before working. Add permission guidance from `templates/*-allow-permissions.md` when the team wants explicit allowlist policy text.
 
+Use `templates/project-overview.md` to create an onboarding-first `docs/project-overview.md` in target repositories that do not already have one. The template helps humans and agents map purpose, system context, domains, services, workflows, repository structure, local development, operations, tests, and governance.
+
 The README includes a shell snippet for applying these presets to an existing local repository. The snippet copies files directly into the target repository structure, writes `.incoming` files instead of overwriting existing files, and records the source repository commit in `docs/ai-presets-source.md`.
 
 ### New Feature Planning
 
 Use `templates/new-feature-request.md` to capture the feature request. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation. Move to `presets/implementation-guidelines.md` only after scope, trade-offs, tests, security, reliability, observability, rollout, and rollback have been reviewed.
 
-Use `presets/grill-me.md` as an optional ambiguity-resolution workflow when a plan needs deliberate stress-testing. The workflow asks one focused question at a time, recommends an answer, and resolves decision dependencies before implementation.
+Use `presets/ambiguity-resolution.md` as an optional ambiguity-resolution workflow when a plan needs deliberate stress-testing. The workflow asks one focused question at a time, recommends an answer, and resolves decision dependencies before implementation.
 
 Use `presets/test-driven-implementation.md` for behavior-changing implementation work where automated tests are practical.
 
@@ -103,15 +105,17 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - Agents must think before coding, state assumptions, surface ambiguity, and avoid silent interpretation when requirements are unclear.
 - Legacy projects should not receive DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Agents should suggest creating `docs/project-overview.md` when it is missing in a target project.
-- Meaningful ambiguity can be handled with the optional `presets/grill-me.md` workflow before implementation.
+- Meaningful ambiguity can be handled with the optional `presets/ambiguity-resolution.md` workflow before implementation.
 - Agents prioritize minimum necessary implementation, avoid speculative flexibility, and keep changes surgical.
 - Code changes and implementations should be followed by related tests or validation checks plus a brief security and reliability assessment.
+- Frontend changes that affect user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior should include browser-based validation; when Playwright, Cypress, or another end-to-end framework exists, agents should run related tests for affected flows when practical.
 - Test-driven development is the default for feature work, bug fixes, refactors, and behavior changes where automated tests are practical.
 - Rigor should scale to change risk through reusable calibration and post-change assessment presets.
 - Multi-step execution should define verifiable success criteria and checks.
 - Non-trivial work requires explicit trade-off analysis.
 - New feature requests have both a human intake template and an agent planning preset.
 - Development decisions are tracked as one file per decision under `docs/decisions/`.
+- New project overview files should start from `templates/project-overview.md`, which is optimized for human onboarding and agent orientation through practical sections and Mermaid diagrams.
 - Permission guidance lives as copy-ready templates and prefers explicit, reviewed command prefixes over broad package manager or Docker lifecycle permissions.
 - Documentation validation is maintained as a lightweight checklist rather than a runtime test suite or apply script.
 - The local import workflow applies files directly to their expected target paths and uses `.incoming` files for reviewable conflicts.

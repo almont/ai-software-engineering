@@ -28,7 +28,7 @@ Use these instructions when any AI agent works in this repository. `CLAUDE.md` i
 - State assumptions explicitly before implementation.
 - If requirements are unclear, stop, name the confusion, and ask.
 - If multiple interpretations are reasonable, present them instead of choosing silently.
-- When ambiguity is meaningful or the user asks to stress-test a plan, use the optional `presets/grill-me.md` workflow to ask one focused question at a time, recommend an answer, and resolve decision dependencies before implementation.
+- When ambiguity is meaningful or the user asks to stress-test a plan, use the optional `presets/ambiguity-resolution.md` workflow to ask one focused question at a time, recommend an answer, and resolve decision dependencies before implementation.
 - Surface meaningful trade-offs and recommend the simplest approach that fits the request.
 - Push back when the requested or implied solution is more complex than the problem requires.
 
@@ -84,7 +84,7 @@ For documentation-only changes, configuration-only changes, throwaway prototypes
 
 Cover the happy path, error scenarios, relevant business rules, edge cases, and regressions. Use unit tests for main logic and integration or contract tests for external dependencies, webhooks, queues, and APIs.
 
-After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks, perform a brief security and reliability assessment, and report the result. If a test cannot be run, explain the exact reason.
+After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks, perform a brief security and reliability assessment, and report the result. For frontend changes, include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected. If the project uses Playwright, Cypress, or another end-to-end framework, run the related tests for affected flows when practical. If a test cannot be run, explain the exact reason.
 
 If useful improvements are found outside the requested scope, list them separately instead of implementing them without need.
 

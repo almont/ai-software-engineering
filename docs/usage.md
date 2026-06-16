@@ -6,7 +6,7 @@ All durable documentation copied from this repository should remain in English. 
 
 Agents should read `docs/project-overview.md` when present. If it is missing, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
 
-After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
+After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment. For frontend changes, agents should include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected. If the project uses Playwright, Cypress, or another end-to-end framework, agents should run related tests for affected flows when practical.
 
 For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical. Documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical should explain the exception and use the closest validation available.
 
@@ -16,14 +16,15 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 
 1. Copy `templates/new-project-CLAUDE.md` into the target repository as `CLAUDE.md`.
 2. Configure or prompt AI tools that do not discover `CLAUDE.md` automatically to read it before working.
-3. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if the team wants documented safe actions.
-4. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
+3. Copy `templates/project-overview.md` to `docs/project-overview.md` if the target repository does not already have a project overview.
+4. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if the team wants documented safe actions.
+5. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
 
 ## New Feature Planning
 
 1. Use `templates/new-feature-request.md` to describe the feature request.
 2. Use `presets/new-feature-planning.md` to generate a Staff Engineer-level plan.
-3. Use `presets/grill-me.md` when the plan has meaningful ambiguity or needs deliberate stress-testing.
+3. Use `presets/ambiguity-resolution.md` when the plan has meaningful ambiguity or needs deliberate stress-testing.
 4. Review scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback before implementation starts.
 5. Use `presets/test-driven-implementation.md` for behavior-changing implementation work where automated tests are practical.
 6. Use `presets/implementation-guidelines.md` when the feature is ready to build.
@@ -33,7 +34,7 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 - Use `engineering-review.md` for broad staff-level review.
 - Use `change-risk-calibration.md` when the right validation depth is unclear.
 - Use `new-feature-planning.md` before implementing a non-trivial feature.
-- Use `grill-me.md` when ambiguity is meaningful, the user asks to be grilled, or a plan needs one-question-at-a-time stress-testing.
+- Use `ambiguity-resolution.md` when ambiguity is meaningful, the user asks for deliberate clarification, or a plan needs one-question-at-a-time stress-testing.
 - Use `legacy-change-guidelines.md` when working in legacy or under-tested projects.
 - Use `post-change-assessment.md` after code changes, behavior changes, or meaningful configuration changes.
 - Use `test-driven-implementation.md` when implementing features, bug fixes, refactors, or behavior changes where automated tests are practical.
@@ -55,5 +56,7 @@ The permission templates document common safe local development actions. They ar
 ## Project Overview And Decisions
 
 Read `docs/project-overview.md` to understand the current repository shape and operating model.
+
+Use `templates/project-overview.md` to create a new onboarding-first project overview when a target repository does not already have one.
 
 For meaningful development decisions, create one file under `docs/decisions/` using `templates/decision-log-entry.md`. Update `docs/project-overview.md` when the project purpose, structure, workflow, permission policy, or maintenance model changes.

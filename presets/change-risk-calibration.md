@@ -22,6 +22,7 @@ Expected rigor:
 
 - Use test-driven development when automated tests are practical.
 - Run focused tests plus related checks.
+- For frontend UI behavior changes, include browser-based validation for affected flows when practical.
 - Perform the post-change assessment.
 
 ### High Risk
@@ -33,6 +34,7 @@ Expected rigor:
 - Resolve ambiguity before implementation.
 - Use TDD or a clear reproduction when practical.
 - Run focused and broader validation.
+- For high-risk frontend flows, run related Playwright, Cypress, or other end-to-end checks when the project uses them and they are practical.
 - Perform security and reliability review.
 - Cover rollout, rollback, observability, and compatibility.
 

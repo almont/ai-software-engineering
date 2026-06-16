@@ -110,7 +110,7 @@ Cover:
 - Relevant business rules.
 - Edge cases.
 
-After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks and report the result. If they cannot run, explain exactly why.
+After any code change or implementation, use `presets/post-change-assessment.md`: run related tests or validation checks and report the result. For frontend changes, include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected. If the project uses Playwright, Cypress, or another end-to-end framework, run the related tests for affected flows when practical. If they cannot run, explain exactly why.
 
 ## Security and Compatibility
 

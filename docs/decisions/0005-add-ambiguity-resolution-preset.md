@@ -1,4 +1,4 @@
-# Add Grill Me Ambiguity Preset
+# 0005: Add Ambiguity Resolution Preset
 
 ## Status
 
@@ -12,11 +12,11 @@ Accepted
 
 The repository already instructs agents to surface ambiguity and ask when requirements are unclear. The team wanted a reusable workflow for cases where a plan or design needs more deliberate clarification before implementation.
 
-The requested behavior was inspired by a skill that interviews the user relentlessly, explores the codebase for answers when possible, and recommends an answer for each question.
+The requested behavior was inspired by a workflow that interviews the user carefully, explores the codebase for answers when possible, and recommends an answer for each question.
 
 ## Decision
 
-Add `presets/grill-me.md` as an optional ambiguity-resolution preset. The preset is recommended when the user asks to be grilled, when a plan needs stress-testing, or when meaningful ambiguity should be resolved before implementation.
+Add `presets/ambiguity-resolution.md` as an optional ambiguity-resolution preset. The preset is recommended when a user asks for deliberate clarification, when a plan needs stress-testing, or when meaningful ambiguity should be resolved before implementation.
 
 Reference the preset from the canonical agent instructions, project templates, usage documentation, README, and project overview.
 

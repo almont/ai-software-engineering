@@ -1,12 +1,12 @@
-# Grill Me Preset
+# Ambiguity Resolution Preset
 
-Use this preset when a plan, design, feature request, or implementation approach has meaningful ambiguity and the user wants to stress-test it before work begins. It is especially useful when the user says "grill me", asks for relentless clarification, or wants each branch of a decision tree resolved.
+Use this preset when a plan, design, feature request, or implementation approach has meaningful ambiguity and needs deliberate clarification before work begins. It is especially useful when the user asks for a focused decision interview, wants a plan stress-tested, or wants each branch of a decision tree resolved.
 
 Do not use this for straightforward, low-risk tasks where the requirement is already clear.
 
 ## Prompt
 
-Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one by one.
+Interview me carefully about every important aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one by one.
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
 

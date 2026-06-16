@@ -9,6 +9,10 @@ Scale the depth of the assessment to the risk of the change. Documentation-only 
 1. Tests and validation
    - List focused tests run.
    - List broader tests, lint, typecheck, build, or manual validation run.
+   - For frontend changes, include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected.
+   - If the project uses Playwright, Cypress, or another end-to-end framework, run related tests for affected flows when practical.
+   - For visual or responsive UI changes, validate key screens in relevant desktop and mobile viewports when practical.
+   - If no browser automation exists, perform a manual browser smoke test or explain why browser validation was not practical.
    - If anything could not run, explain why and what risk remains.
 
 2. Security

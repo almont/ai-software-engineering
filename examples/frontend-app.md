@@ -21,3 +21,5 @@ Extra review focus:
 - Error states.
 - Accessibility.
 - Regression tests for critical user flows.
+- Browser-based validation for changed UI flows, routing, forms, visual layout, and responsive behavior.
+- Playwright, Cypress, or another end-to-end framework for affected flows when the project already uses one.

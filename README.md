@@ -2,7 +2,7 @@
 
 Reusable AI agent instructions, presets, and team review workflows centered on one canonical `CLAUDE.md` file.
 
-This repository is intentionally documentation-first. It is a source of truth for agent behavior, review prompts, and safe development permission guidance that can be copied into new projects. Permission guidance is policy text only; it does not grant or enforce tool permissions by itself. There is no install script, package manager, or runtime.
+This repository is intentionally documentation-first. It is a source of truth for agent behavior, review prompts, and reusable project setup guidance that can be copied into new projects. There is no install script, package manager, or runtime.
 
 ## Purpose
 
@@ -14,8 +14,6 @@ Use this repository to standardize how AI agents work across projects:
 - How agents should review code.
 - How agents should reason about security, reliability, tests, and trade-offs.
 - How agents should orient themselves with project overview documentation before implementation.
-- Which local development actions are commonly safe.
-- Which actions require explicit approval.
 
 The goal is not to create a complex framework. The goal is to make agent behavior consistent, reviewable, and easy to reuse.
 
@@ -39,7 +37,7 @@ In legacy projects, agents should not introduce DDD layers, new architectural pa
 
 Agents should read `docs/project-overview.md` when present. If it is missing, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
 
-After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment.
+After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment. For frontend changes, agents should include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected. If the project uses Playwright, Cypress, or another end-to-end framework, agents should run related tests for affected flows when practical.
 
 For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical: write or identify a failing test or reproduction first, make the smallest passing change, then refactor while tests stay green.
 
@@ -63,7 +61,7 @@ All durable repository documentation should be written in English.
 
 - `CLAUDE.md`: canonical AI agent instructions for new repositories.
 - `presets/`: reusable review, implementation, and flow-mapping prompts.
-- `templates/`: copy-ready files, review requests, and permission guidance templates.
+- `templates/`: copy-ready files, review requests, and project setup templates.
 - `examples/`: project-specific preset combinations.
 - `docs/`: usage, maintenance, project overview, and decision logs.
 
@@ -72,7 +70,7 @@ All durable repository documentation should be written in English.
 1. Copy `templates/new-project-CLAUDE.md` to `CLAUDE.md` in a target repository.
 2. Configure or prompt any AI tools that do not discover `CLAUDE.md` automatically to read it before working.
 3. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
-4. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if you want documented permission guidance.
+4. Copy `templates/project-overview.md` to `docs/project-overview.md` if the target repository does not already have a project overview.
 
 ## Pull Files Into A Local Project
 
@@ -153,7 +151,7 @@ The `Created files:` output from the script lists every file written during the 
 
 1. Start with `templates/new-feature-request.md` to capture the problem, desired outcome, scope, constraints, acceptance criteria, trade-offs, tests, and rollout expectations.
 2. Use `presets/new-feature-planning.md` to have an agent produce a Staff Engineer-level plan before implementation.
-3. Use `presets/grill-me.md` when the plan has meaningful ambiguity or needs a deliberate stress test before implementation.
+3. Use `presets/ambiguity-resolution.md` when the plan has meaningful ambiguity or needs a deliberate stress test before implementation.
 4. Review the plan for scope, trade-offs, security, reliability, observability, test coverage, rollout, and rollback.
 5. Use `presets/test-driven-implementation.md` for behavior-changing implementation work where automated tests are practical.
 6. Only then move into implementation using `presets/implementation-guidelines.md`.
@@ -166,7 +164,7 @@ The `Created files:` output from the script lists every file written during the 
 - `presets/test-review.md`: test coverage review for unit, integration, contract, happy path, error path, edge case, and regression coverage.
 - `presets/new-feature-planning.md`: Staff Engineer-level feature planning before implementation.
 - `presets/change-risk-calibration.md`: lightweight guide for choosing validation depth by change risk.
-- `presets/grill-me.md`: optional ambiguity-resolution interview for stress-testing plans and resolving decision dependencies before implementation.
+- `presets/ambiguity-resolution.md`: optional ambiguity-resolution interview for stress-testing plans and resolving decision dependencies before implementation.
 - `presets/legacy-change-guidelines.md`: guidance for safe changes in legacy or under-tested projects.
 - `presets/post-change-assessment.md`: post-change checklist for tests, security, reliability, compatibility, rollout, and observability.
 - `presets/test-driven-implementation.md`: test-first implementation workflow for features, bug fixes, refactors, and behavior changes where automated tests are practical.
@@ -174,29 +172,14 @@ The `Created files:` output from the script lists every file written during the 
 - `presets/feature-flow-mapping.md`: end-to-end feature flow mapping.
 - `presets/event-driven-flow-mapping.md`: producer, consumer, payload, retry, ordering, DLQ, and idempotency mapping.
 
-## Permission Guidance
+## Available Templates
 
-The permission templates define common local development actions that are usually safe. They are policy text for humans and agent configuration, not permission engines:
-
-- Read, list, and search files.
-- Inspect git status, diffs, branches, and logs.
-- Run tests, lint, format, typecheck, builds, and local dev servers.
-- Use explicit `npm`, `pnpm`, and `yarn` scripts such as tests, linting, typechecking, builds, and local dev servers.
-- Use `gh` for non-destructive GitHub workflows.
-- Use `docker` and `docker compose` for local inspection such as `ps` and `logs`.
-
-They also define actions that require explicit approval:
-
-- Destructive file or git operations.
-- Pushing, merging, tagging, releasing, or deploying.
-- Production data access or mutation.
-- Secret, token, key, or credential handling.
-- Authentication, authorization, permission, infrastructure, or CI/CD changes.
-- High-risk business workflow, webhook, or external integration behavior changes.
-- Database migrations, schema deletion, or data deletion.
-- Docker prune or delete operations.
-- Broad package manager script prefixes or Docker lifecycle commands without project-specific review.
-- Unknown tool installs or untrusted network commands.
+- `templates/new-project-CLAUDE.md`: canonical agent instructions for a target repository.
+- `templates/project-overview.md`: onboarding-first project overview template for humans and agents, including context diagrams, domains, services, workflows, operations, and governance.
+- `templates/new-feature-request.md`: feature request intake template.
+- `templates/pr-review-request.md`: PR review request template.
+- `templates/security-review-request.md`: security review request template.
+- `templates/decision-log-entry.md`: decision log entry template.
 
 ## Example Starting Points
 
@@ -209,7 +192,7 @@ Treat `CLAUDE.md` as the canonical source. When standards change:
 
 1. Update `CLAUDE.md`.
 2. Update matching files in `templates/`.
-3. Update `presets/`, permission guidance templates, and `examples/` if needed.
+3. Update `presets/`, templates, and `examples/` if needed.
 4. Review `docs/usage.md` and `docs/maintenance.md`.
 5. Update `docs/project-overview.md` when the project shape or workflow changes.
 6. Add a decision log entry under `docs/decisions/` for meaningful development decisions.
@@ -218,7 +201,7 @@ Keep documentation in English, even when the original request or conversation is
 
 ## Decision Logs
 
-Use `docs/project-overview.md` as the living summary of the repository. Use `docs/decisions/` for one decision file per meaningful development decision. Start new entries from `templates/decision-log-entry.md`.
+Use `docs/project-overview.md` as the living summary of the repository. Start new project overview files from `templates/project-overview.md`. Use `docs/decisions/` for one decision file per meaningful development decision. Start new entries from `templates/decision-log-entry.md`.
 
 ## Design Choice
 
