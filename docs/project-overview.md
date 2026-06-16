@@ -54,7 +54,7 @@ Use `templates/new-project-CLAUDE.md` to copy canonical agent instructions into 
 
 Use `templates/project-overview.md` to create an onboarding-first `docs/project-overview.md` in target repositories that do not already have one. The template helps humans and agents map purpose, system context, domains, services, workflows, repository structure, local development, operations, tests, and governance.
 
-The README includes a shell snippet for applying these presets to an existing local repository. The snippet copies files directly into the target repository structure, writes `.incoming` files instead of overwriting existing files, and records the source repository commit in `docs/ai-presets-source.md`.
+The README includes an agent-driven adoption prompt for applying these presets to an existing local repository. The prompt tells agents to inspect the target repository first, preserve legacy project knowledge, merge duplicate guidance conservatively, and avoid blind overwrites.
 
 ### New Feature Planning
 
@@ -118,6 +118,6 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - New project overview files should start from `templates/project-overview.md`, which is optimized for human onboarding and agent orientation through practical sections and Mermaid diagrams.
 - Permission guidance lives as copy-ready templates and prefers explicit, reviewed command prefixes over broad package manager or Docker lifecycle permissions.
 - Documentation validation is maintained as a lightweight checklist rather than a runtime test suite or apply script.
-- The local import workflow applies files directly to their expected target paths and uses `.incoming` files for reviewable conflicts.
+- The local adoption workflow uses an agent prompt that preserves target repository knowledge first, then merges relevant presets conservatively.
 - Permission guidance is kept under `templates/` because it is policy text and does not grant permissions by itself.
 - Tool-specific instruction files such as `AGENTS.md` and `.github/copilot-instructions.md` are intentionally not maintained; tools should be pointed at `CLAUDE.md` instead.

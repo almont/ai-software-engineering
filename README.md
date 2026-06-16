@@ -72,80 +72,80 @@ All durable repository documentation should be written in English.
 3. Copy the relevant files from `presets/` into the target repo or paste them into review requests.
 4. Copy `templates/project-overview.md` to `docs/project-overview.md` if the target repository does not already have a project overview.
 
-## Pull Files Into A Local Project
+## Adopt These Presets With An AI Agent
 
-Run this from the root of the target repository where you want to apply these presets. The script copies files directly into the expected project structure, records the source commit, and prints every file it created.
+Use this prompt from the root of the target repository. It is designed for both new and legacy projects.
 
-Existing files are not overwritten. When a destination already exists, the script writes a `.incoming` file so you can review the diff manually.
+Source presets repository:
 
-```bash
-set -euo pipefail
+- `https://github.com/almont/ai-software-engineering`
 
-SOURCE_REPO="https://github.com/almont/ai-software-engineering.git"
-SOURCE_REF="main"
-TMP_DIR="$(mktemp -d)"
-CREATED_FILES="$(mktemp)"
+Target repository:
 
-git clone --depth 1 --branch "$SOURCE_REF" --filter=blob:none --sparse "$SOURCE_REPO" "$TMP_DIR"
-git -C "$TMP_DIR" sparse-checkout set templates presets examples
-SOURCE_COMMIT="$(git -C "$TMP_DIR" rev-parse HEAD)"
+- The current working directory.
 
-copy_or_incoming() {
-  src="$1"
-  dest="$2"
+Principle: preserve first, add second. The agent should not overwrite, delete, or simplify existing project knowledge unless you explicitly approve the removal.
 
-  mkdir -p "$(dirname "$dest")"
+Prompt:
 
-  if [ -e "$dest" ]; then
-    cp "$src" "$dest.incoming"
-    echo "$dest.incoming" >> "$CREATED_FILES"
-  else
-    cp "$src" "$dest"
-    echo "$dest" >> "$CREATED_FILES"
-  fi
-}
-
-copy_or_incoming "$TMP_DIR/templates/new-project-CLAUDE.md" "CLAUDE.md"
-
-for dir in presets templates examples; do
-  find "$TMP_DIR/$dir" -type f | while read -r src; do
-    rel="${src#"$TMP_DIR/"}"
-    copy_or_incoming "$src" "$rel"
-  done
-done
-
-SOURCE_DOC="$(mktemp)"
-cat > "$SOURCE_DOC" <<EOF
-# AI Presets Source
-
-- Repository: $SOURCE_REPO
-- Ref: $SOURCE_REF
-- Commit: $SOURCE_COMMIT
-EOF
-
-copy_or_incoming "$SOURCE_DOC" "docs/ai-presets-source.md"
-
-rm -rf "$TMP_DIR"
-rm -f "$SOURCE_DOC"
-
-echo "Created files:"
-sort -u "$CREATED_FILES"
-rm -f "$CREATED_FILES"
-
-echo
-echo "Review changes:"
-git status --short
-```
-
-After running it, review both newly created files and `.incoming` conflict files:
-
-```bash
-git status --short
-find . -name "*.incoming" -print
-git diff
-```
-
-The `Created files:` output from the script lists every file written during the run. The `find` command only lists `.incoming` files created because a destination file already existed.
+> Adopt the AI agent presets from `https://github.com/almont/ai-software-engineering` into the current repository.
+>
+> Treat the current working directory as the target repository.
+>
+> This may be a legacy project. Preserve existing project knowledge first. Do not overwrite, delete, or simplify existing instructions, architecture notes, commands, docs, or team conventions unless I explicitly approve the removal.
+>
+> First, inspect the target repository:
+>
+> - Find existing agent instruction files such as `CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, `.cursor/rules`, or similar.
+> - Find existing documentation under `docs/`, `README.md`, wiki exports, architecture notes, runbooks, ADRs, onboarding docs, or testing docs.
+> - Identify the project framework, language, architecture, modules, test commands, build commands, local development conventions, deployment notes, and known legacy constraints.
+> - Summarize what existing guidance must be preserved before proposing edits.
+>
+> Then inspect the source presets repository:
+>
+> - Read `templates/new-project-CLAUDE.md`.
+> - Read `templates/project-overview.md`.
+> - Read available files under `presets/`, `templates/`, and `examples/`.
+> - Use only the guidance that is relevant to this target project.
+>
+> Apply the presets conservatively:
+>
+> - If `CLAUDE.md` is missing, create it from `templates/new-project-CLAUDE.md` and adapt it to the target project.
+> - If `CLAUDE.md` already exists, merge useful guidance into it without replacing project-specific content.
+> - Preserve existing architecture notes, business rules, commands, testing guidance, deployment notes, ownership boundaries, and team conventions.
+> - If other instruction files exist, do not delete or rewrite them unless I explicitly ask. Instead, recommend whether they should point to `CLAUDE.md` or remain separate.
+> - If `docs/project-overview.md` is missing, create it from `templates/project-overview.md` and adapt it by inspecting the target repository.
+> - If `docs/project-overview.md` already exists, update it only where the source template reveals useful missing sections.
+> - Copy or adapt relevant presets from `presets/` only if they are useful for this target project.
+> - Copy or adapt relevant request templates from `templates/` only if they are useful for this target project.
+> - Do not add permission guidance unless explicitly requested.
+> - Do not blindly overwrite existing files.
+>
+> When content overlaps or conflicts:
+>
+> - Prefer target repository-specific guidance over generic source guidance.
+> - Preserve legacy constraints even when they conflict with idealized architecture.
+> - Do not introduce DDD layers, new architectural patterns, structural migrations, or tool changes unless the project already uses them or I explicitly request that migration.
+> - Explain each conflict and recommend the safest merge.
+> - Ask before removing existing project-specific instructions.
+>
+> Before editing, report:
+>
+> 1. Existing instruction and documentation files found in the target repository.
+> 2. Existing project guidance that must be preserved.
+> 3. Source files from `https://github.com/almont/ai-software-engineering` that you plan to use.
+> 4. Files you plan to create or update in the target repository.
+> 5. How you will merge duplicate or overlapping guidance.
+> 6. Any risks or decisions that need approval.
+>
+> After editing, report:
+>
+> 1. Files changed.
+> 2. What was merged from the source presets.
+> 3. What was preserved from the target repository.
+> 4. What was intentionally left out.
+> 5. Conflicts or trade-offs resolved.
+> 6. Validation performed.
 
 ## How To Plan A New Feature
 
@@ -202,10 +202,6 @@ Keep documentation in English, even when the original request or conversation is
 ## Decision Logs
 
 Use `docs/project-overview.md` as the living summary of the repository. Start new project overview files from `templates/project-overview.md`. Use `docs/decisions/` for one decision file per meaningful development decision. Start new entries from `templates/decision-log-entry.md`.
-
-## Design Choice
-
-This repository does not include an apply script yet. Manual copying keeps the first version transparent and easy to audit. If repeated setup becomes painful, an optional script can be added later without changing the documentation model.
 
 ## License
 

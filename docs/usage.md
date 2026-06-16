@@ -20,6 +20,8 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 4. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if the team wants documented safe actions.
 5. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
 
+For existing or legacy repositories, prefer the README's agent-driven adoption prompt. It instructs the agent to inspect the target repository first, preserve project-specific guidance, merge duplicate content conservatively, and avoid blind overwrites.
+
 ## New Feature Planning
 
 1. Use `templates/new-feature-request.md` to describe the feature request.
