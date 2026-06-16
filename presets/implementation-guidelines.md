@@ -13,10 +13,41 @@ Apply to any feature implementation or bug fix.
 - Prioritize clarity, automated tests, low coupling, and future maintenance.
 - Keep code simple, explicit, and easy to review.
 - Follow the existing project structure and conventions.
-- Use DDD only when there is relevant business logic.
-- In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
+
+### DDD
+
+Use DDD only when it clarifies meaningful business rules, domain boundaries, or invariants in a project that already uses or explicitly asks for that style.
+
+DDD should reduce ambiguity in business logic, not add ceremony. Do not introduce domain, application, infrastructure, repository, service, aggregate, entity, or value-object layers just because a feature contains business logic.
+
+In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, structural migrations, or DDD terminology unless the existing architecture already uses them or the user explicitly requests that migration.
+
+If the project does not already use DDD, make the smallest change that fits the existing architecture. Do not refactor toward DDD, introduce DDD terminology, or propose architecture migration work unless the user explicitly asks for it.
+
+### SOLID
+
+Use SOLID to evaluate the code you are already changing, not to justify broad refactors or new architecture.
+
+Do not add interfaces, layers, factories, base classes, dependency injection, or extension points unless they are already part of the project's style or clearly necessary for the requested change.
+
+For changed code, check that responsibilities are clear, coupling is low, tests can isolate important behavior where needed, and public APIs expose behavior rather than implementation details.
+
+### DRY
+
+Use DRY to protect shared business rules, invariants, calculations, validation, policies, and workflows from drifting.
+
+Do not extract duplication just because code looks similar. Similar-looking code can represent different concepts that should evolve independently.
+
+Extract duplication when:
+
+- The duplicated logic represents the same business concept or rule.
+- A change would otherwise need to be made in multiple places.
+- The abstraction has a clear name in the project's business language.
+- The extraction makes the code easier to read, test, or change.
+
+Prefer explicit, readable code over clever reuse.
 
 ## Think Before Coding
 
@@ -101,7 +132,9 @@ Use test-driven development as the default for feature work, bug fixes, refactor
 3. Implement the smallest change needed to pass.
 4. Refactor only after the tests are green.
 
-For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the closest validation available.
+Prefer behavior-focused tests over implementation-detail tests.
+
+For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the smallest reliable reproduction available, such as a characterization test, manual reproduction, API call, browser flow, log assertion, or focused validation script.
 
 Cover:
 

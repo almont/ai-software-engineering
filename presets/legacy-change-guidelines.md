@@ -5,7 +5,7 @@ Use this preset when working in a legacy project, an under-tested codebase, or a
 ## Principles
 
 - Fit the change into the current structure unless the user explicitly asks for an architecture migration.
-- Do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+- Do not introduce DDD layers, new architectural patterns, structural migrations, or DDD terminology unless the existing architecture already uses them or the user explicitly requests that migration.
 - Prefer characterization tests or the smallest practical reproduction before changing behavior.
 - Keep refactors local to the change and only when they reduce risk for the requested work.
 - Preserve backward compatibility unless the user explicitly requests a behavior change.

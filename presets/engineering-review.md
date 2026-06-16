@@ -15,7 +15,9 @@ Review for:
 - Operational risks in production.
 - Rollout and rollback strategy.
 - Important trade-offs in architecture or implementation choices.
-- Unrequested DDD layers, new architectural patterns, or structural migrations in legacy projects.
+- Unrequested DDD layers, DDD terminology, new architectural patterns, or structural migrations in legacy projects.
+- SOLID used as justification for broad refactors, unnecessary interfaces, layers, factories, base classes, dependency injection, or extension points.
+- DRY extractions that merge similar-looking code representing different business concepts.
 
 Prioritize issues that could affect customers, money movement, data consistency, security, reliability, or maintainability.
 

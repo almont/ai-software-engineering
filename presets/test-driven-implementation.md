@@ -2,7 +2,7 @@
 
 Use this preset for feature work, bug fixes, refactors, and behavior changes where automated tests are practical.
 
-Do not use this preset for documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical. In those cases, explain why TDD does not apply and use the closest validation available.
+Do not use this preset for documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical. In those cases, explain why TDD does not apply and use the smallest reliable reproduction available, such as a characterization test, manual reproduction, API call, browser flow, log assertion, or focused validation script.
 
 ## Workflow
 

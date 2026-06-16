@@ -18,7 +18,7 @@ List likely files, modules, services, APIs, UI surfaces, jobs, events, database 
 
 Describe the implementation strategy. Keep the scope small, explicit, and easy to review. Follow existing patterns unless there is a clear reason to propose a change.
 
-Use `presets/change-risk-calibration.md` to state the expected level of rigor. For legacy projects, use `presets/legacy-change-guidelines.md` and do not recommend DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requested that migration.
+Use `presets/change-risk-calibration.md` to state the expected level of rigor. For legacy projects, use `presets/legacy-change-guidelines.md` and do not recommend DDD layers, new architectural patterns, structural migrations, or DDD terminology unless the existing architecture already uses them or the user explicitly requested that migration.
 
 ## Trade-Off Analysis
 

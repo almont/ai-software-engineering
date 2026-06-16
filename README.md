@@ -13,6 +13,7 @@ Use this repository to standardize how AI agents work across projects:
 - How agents should plan new features before implementation.
 - How agents should review code.
 - How agents should reason about security, reliability, tests, and trade-offs.
+- How agents should apply DDD, TDD, SOLID, and DRY without overengineering.
 - How agents should orient themselves with project overview documentation before implementation.
 
 The goal is not to create a complex framework. The goal is to make agent behavior consistent, reviewable, and easy to reuse.
@@ -33,13 +34,15 @@ Agents using these presets should act as experienced Staff Engineers. They shoul
 
 For non-trivial changes, agents should explain what the chosen approach optimizes for and what it makes harder. They should prefer small, explicit, easy-to-review changes over broad rewrites.
 
-In legacy projects, agents should not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+Agents should use DDD only when it clarifies meaningful business rules, domain boundaries, or invariants in a project that already uses or explicitly asks for that style. In legacy projects, agents should not introduce DDD layers, new architectural patterns, structural migrations, or DDD terminology unless the existing architecture already uses them or the user explicitly requests that migration.
+
+Agents should use SOLID to evaluate code they are already changing, not to justify broad refactors or new architecture. They should use DRY to protect shared business rules, invariants, calculations, validation, policies, and workflows from drifting, not to extract similar-looking code prematurely.
 
 Agents should read `docs/project-overview.md` when present. If it is missing, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
 
 After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment. For frontend changes, agents should include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected. If the project uses Playwright, Cypress, or another end-to-end framework, agents should run related tests for affected flows when practical.
 
-For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical: write or identify a failing test or reproduction first, make the smallest passing change, then refactor while tests stay green.
+For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical: write or identify a failing test or reproduction first, make the smallest passing change, then refactor while tests stay green. When automated tests are not practical, agents should explain why TDD does not apply and use the smallest reliable reproduction available.
 
 Agents should calibrate rigor to risk: documentation-only changes need lightweight validation, behavior changes need TDD where practical and post-change assessment, and high-risk flows need security, reliability, rollout, rollback, and observability review.
 
@@ -88,64 +91,66 @@ Principle: preserve first, add second. The agent should not overwrite, delete, o
 
 Prompt:
 
-> Adopt the AI agent presets from `https://github.com/almont/ai-software-engineering` into the current repository.
->
-> Treat the current working directory as the target repository.
->
-> This may be a legacy project. Preserve existing project knowledge first. Do not overwrite, delete, or simplify existing instructions, architecture notes, commands, docs, or team conventions unless I explicitly approve the removal.
->
-> First, inspect the target repository:
->
-> - Find existing agent instruction files such as `CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, `.cursor/rules`, or similar.
-> - Find existing documentation under `docs/`, `README.md`, wiki exports, architecture notes, runbooks, ADRs, onboarding docs, or testing docs.
-> - Identify the project framework, language, architecture, modules, test commands, build commands, local development conventions, deployment notes, and known legacy constraints.
-> - Summarize what existing guidance must be preserved before proposing edits.
->
-> Then inspect the source presets repository:
->
-> - Read `templates/new-project-CLAUDE.md`.
-> - Read `templates/project-overview.md`.
-> - Read available files under `presets/`, `templates/`, and `examples/`.
-> - Use only the guidance that is relevant to this target project.
->
-> Apply the presets conservatively:
->
-> - If `CLAUDE.md` is missing, create it from `templates/new-project-CLAUDE.md` and adapt it to the target project.
-> - If `CLAUDE.md` already exists, merge useful guidance into it without replacing project-specific content.
-> - Preserve existing architecture notes, business rules, commands, testing guidance, deployment notes, ownership boundaries, and team conventions.
-> - If other instruction files exist, do not delete or rewrite them unless I explicitly ask. Instead, recommend whether they should point to `CLAUDE.md` or remain separate.
-> - If `docs/project-overview.md` is missing, create it from `templates/project-overview.md` and adapt it by inspecting the target repository.
-> - If `docs/project-overview.md` already exists, update it only where the source template reveals useful missing sections.
-> - Copy or adapt relevant presets from `presets/` only if they are useful for this target project.
-> - Copy or adapt relevant request templates from `templates/` only if they are useful for this target project.
-> - Do not add permission guidance unless explicitly requested.
-> - Do not blindly overwrite existing files.
->
-> When content overlaps or conflicts:
->
-> - Prefer target repository-specific guidance over generic source guidance.
-> - Preserve legacy constraints even when they conflict with idealized architecture.
-> - Do not introduce DDD layers, new architectural patterns, structural migrations, or tool changes unless the project already uses them or I explicitly request that migration.
-> - Explain each conflict and recommend the safest merge.
-> - Ask before removing existing project-specific instructions.
->
-> Before editing, report:
->
-> 1. Existing instruction and documentation files found in the target repository.
-> 2. Existing project guidance that must be preserved.
-> 3. Source files from `https://github.com/almont/ai-software-engineering` that you plan to use.
-> 4. Files you plan to create or update in the target repository.
-> 5. How you will merge duplicate or overlapping guidance.
-> 6. Any risks or decisions that need approval.
->
-> After editing, report:
->
-> 1. Files changed.
-> 2. What was merged from the source presets.
-> 3. What was preserved from the target repository.
-> 4. What was intentionally left out.
-> 5. Conflicts or trade-offs resolved.
-> 6. Validation performed.
+```text
+Adopt the AI agent presets from `https://github.com/almont/ai-software-engineering` into the current repository.
+
+Treat the current working directory as the target repository.
+
+This may be a legacy project. Preserve existing project knowledge first. Do not overwrite, delete, or simplify existing instructions, architecture notes, commands, docs, or team conventions unless I explicitly approve the removal.
+
+First, inspect the target repository:
+
+- Find existing agent instruction files such as `CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, `.cursor/rules`, or similar.
+- Find existing documentation under `docs/`, `README.md`, wiki exports, architecture notes, runbooks, ADRs, onboarding docs, or testing docs.
+- Identify the project framework, language, architecture, modules, test commands, build commands, local development conventions, deployment notes, and known legacy constraints.
+- Summarize what existing guidance must be preserved before proposing edits.
+
+Then inspect the source presets repository:
+
+- Read `templates/new-project-CLAUDE.md`.
+- Read `templates/project-overview.md`.
+- Read available files under `presets/`, `templates/`, and `examples/`.
+- Use only the guidance that is relevant to this target project.
+
+Apply the presets conservatively:
+
+- If `CLAUDE.md` is missing, create it from `templates/new-project-CLAUDE.md` and adapt it to the target project.
+- If `CLAUDE.md` already exists, merge useful guidance into it without replacing project-specific content.
+- Preserve existing architecture notes, business rules, commands, testing guidance, deployment notes, ownership boundaries, and team conventions.
+- If other instruction files exist, do not delete or rewrite them unless I explicitly ask. Instead, recommend whether they should point to `CLAUDE.md` or remain separate.
+- If `docs/project-overview.md` is missing, create it from `templates/project-overview.md` and adapt it by inspecting the target repository.
+- If `docs/project-overview.md` already exists, update it only where the source template reveals useful missing sections.
+- Copy or adapt relevant presets from `presets/` only if they are useful for this target project.
+- Copy or adapt relevant request templates from `templates/` only if they are useful for this target project.
+- Do not add permission guidance unless explicitly requested.
+- Do not blindly overwrite existing files.
+
+When content overlaps or conflicts:
+
+- Prefer target repository-specific guidance over generic source guidance.
+- Preserve legacy constraints even when they conflict with idealized architecture.
+- Do not introduce DDD layers, DDD terminology, new architectural patterns, structural migrations, or tool changes unless the project already uses them or I explicitly request that migration.
+- Explain each conflict and recommend the safest merge.
+- Ask before removing existing project-specific instructions.
+
+Before editing, report:
+
+1. Existing instruction and documentation files found in the target repository.
+2. Existing project guidance that must be preserved.
+3. Source files from `https://github.com/almont/ai-software-engineering` that you plan to use.
+4. Files you plan to create or update in the target repository.
+5. How you will merge duplicate or overlapping guidance.
+6. Any risks or decisions that need approval.
+
+After editing, report:
+
+1. Files changed.
+2. What was merged from the source presets.
+3. What was preserved from the target repository.
+4. What was intentionally left out.
+5. Conflicts or trade-offs resolved.
+6. Validation performed.
+```
 
 ## How To Plan A New Feature
 

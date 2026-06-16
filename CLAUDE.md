@@ -17,11 +17,35 @@ Use these instructions when any AI agent works in this repository. `CLAUDE.md` i
 - Make only changes needed for the request.
 - Avoid broad refactors, cosmetic changes, and unrelated renames.
 - Add abstractions only when they make the solution clearer or align with existing patterns.
-- Use DDD only when there is relevant business logic.
-- In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
 - Use design patterns only when they simplify the solution.
 - Avoid overengineering.
 - Preserve existing behavior unless a change is explicitly requested.
+
+### DDD
+
+Use DDD only when it clarifies meaningful business rules, domain boundaries, or invariants in a project that already uses or explicitly asks for that style.
+
+DDD should reduce ambiguity in business logic, not add ceremony. Do not introduce domain, application, infrastructure, repository, service, aggregate, entity, or value-object layers just because a feature contains business logic.
+
+In legacy projects, follow `presets/legacy-change-guidelines.md`: do not introduce DDD layers, new architectural patterns, structural migrations, or DDD terminology unless the existing architecture already uses them or the user explicitly requests that migration.
+
+If the project does not already use DDD, make the smallest change that fits the existing architecture. Do not refactor toward DDD, introduce DDD terminology, or propose architecture migration work unless the user explicitly asks for it.
+
+### SOLID and DRY
+
+Use SOLID to evaluate the code you are already changing, not to justify broad refactors or new architecture.
+
+Do not add interfaces, layers, factories, base classes, dependency injection, or extension points unless they are already part of the project's style or clearly necessary for the requested change.
+
+For changed code, check that responsibilities are clear, coupling is low, tests can isolate important behavior where needed, and public APIs expose behavior rather than implementation details.
+
+Use DRY to protect shared business rules, invariants, calculations, validation, policies, and workflows from drifting.
+
+Do not extract duplication just because code looks similar. Similar-looking code can represent different concepts that should evolve independently.
+
+Extract duplication when the duplicated logic represents the same business concept or rule, a change would otherwise need to be made in multiple places, the abstraction has a clear name in the project's business language, and the extraction makes the code easier to read, test, or change.
+
+Prefer explicit, readable code over clever reuse.
 
 ## Think Before Coding
 
@@ -80,7 +104,9 @@ State the recommended path and why it is the best fit for the current scope.
 
 Use test-driven development as the default for feature work, bug fixes, refactors, and behavior changes when automated tests are practical: write or identify the smallest failing test or reproduction first, confirm it fails for the expected reason, implement the smallest change to pass, then refactor with tests green.
 
-For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the closest validation available.
+Prefer behavior-focused tests over implementation-detail tests.
+
+For documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical, explain why TDD does not apply and use the smallest reliable reproduction available, such as a characterization test, manual reproduction, API call, browser flow, log assertion, or focused validation script.
 
 Cover the happy path, error scenarios, relevant business rules, edge cases, and regressions. Use unit tests for main logic and integration or contract tests for external dependencies, webhooks, queues, and APIs.
 

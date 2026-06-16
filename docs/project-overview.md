@@ -26,13 +26,15 @@ Agents should act as experienced Staff Engineers. They should optimize for:
 
 Agents should think before coding by stating assumptions, surfacing ambiguity, and asking when requirements are unclear. They should prefer the simplest solution that fits the request, make surgical changes only, and turn tasks into verifiable goals with checks for multi-step work.
 
-In legacy projects, agents should not introduce DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+Agents should use DDD only when it clarifies meaningful business rules, domain boundaries, or invariants in a project that already uses or explicitly asks for that style. In legacy projects, agents should not introduce DDD layers, new architectural patterns, structural migrations, or DDD terminology unless the existing architecture already uses them or the user explicitly requests that migration.
+
+Agents should use SOLID to evaluate code they are already changing, not to justify broad refactors or new architecture. They should use DRY to protect shared business rules, invariants, calculations, validation, policies, and workflows from drifting, not to extract similar-looking code prematurely.
 
 Agents should read `docs/project-overview.md` when present. If it is missing in a target project, they should inspect the project and suggest creating one before or alongside meaningful implementation work.
 
 After code changes or implementation, agents should run applicable tests or validation checks and perform a brief security and reliability assessment. For frontend changes, agents should include browser-based validation when user flows, routing, forms, visual layout, responsiveness, authentication, checkout, onboarding, or other UI behavior is affected. If the project uses Playwright, Cypress, or another end-to-end framework, agents should run related tests for affected flows when practical.
 
-For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical. Documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical should explain the exception and use the closest validation available.
+For feature work, bug fixes, refactors, and behavior changes, agents should use test-driven development by default when automated tests are practical. Documentation-only changes, configuration-only changes, throwaway prototypes, generated code, or work where automated tests are not practical should explain the exception and use the smallest reliable reproduction available.
 
 Agents should calibrate rigor to risk: documentation-only changes need lightweight validation, behavior changes need TDD where practical and post-change assessment, and high-risk flows need security, reliability, rollout, rollback, and observability review.
 
@@ -103,7 +105,9 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - Durable documentation must be written in English.
 - Agents operate with Staff Engineer judgment.
 - Agents must think before coding, state assumptions, surface ambiguity, and avoid silent interpretation when requirements are unclear.
-- Legacy projects should not receive DDD layers, new architectural patterns, or structural migrations unless the existing architecture already uses them or the user explicitly requests that migration.
+- Legacy projects should not receive DDD layers, new architectural patterns, structural migrations, or DDD terminology unless the existing architecture already uses them or the user explicitly requests that migration.
+- SOLID should evaluate changed code, not justify broad refactors or new architecture.
+- DRY should protect shared business rules, invariants, calculations, validation, policies, and workflows from drifting, not extract similar-looking code prematurely.
 - Agents should suggest creating `docs/project-overview.md` when it is missing in a target project.
 - Meaningful ambiguity can be handled with the optional `presets/ambiguity-resolution.md` workflow before implementation.
 - Agents prioritize minimum necessary implementation, avoid speculative flexibility, and keep changes surgical.
