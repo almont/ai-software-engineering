@@ -8,8 +8,8 @@ All documentation in this repository must be written in English. If a user provi
 
 1. Update `CLAUDE.md`.
 2. Update matching files in `templates/`.
-3. Update `presets/`, permission guidance templates, and `examples/` if the change affects them.
-4. Update `docs/project-overview.md` if the project shape, workflow, permission policy, or governance model changed.
+3. Update `presets`, templates, and `examples/` if the change affects them.
+4. Update `docs/project-overview.md` if the project shape, workflow, security model, or governance model changed.
 5. Create a decision log entry under `docs/decisions/` for meaningful development decisions.
 6. Review `docs/usage.md` if setup steps changed.
 
@@ -20,7 +20,6 @@ All documentation in this repository must be written in English. If a user provi
 - All documentation is in English.
 - Agent instructions preserve the Staff Engineer posture.
 - Tool-specific instruction files are not reintroduced unless the project intentionally changes back to mirrored instructions.
-- Permission guidance templates separate safe local development from approval-required actions.
 - Presets include concrete focus areas and output expectations.
 - Templates are copy-ready.
 - Examples reference existing files.
@@ -42,7 +41,7 @@ Review the output for:
 
 - References to files that do not exist.
 - Unfinished markers or accidental example secrets.
-- New examples, presets, templates, or permission guidance missing from usage or overview docs.
+- New examples, presets, or templates missing from usage or overview docs.
 - Drift between `CLAUDE.md`, matching templates, `README.md`, `docs/usage.md`, and `docs/project-overview.md` when canonical behavior changes.
 
 ## Decision Logs

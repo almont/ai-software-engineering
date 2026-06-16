@@ -3,7 +3,6 @@
 Recommended files to copy:
 
 - `templates/new-project-CLAUDE.md` to `CLAUDE.md`.
-- `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md`.
 
 Recommended presets:
 

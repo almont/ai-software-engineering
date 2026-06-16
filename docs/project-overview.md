@@ -4,9 +4,7 @@ This document is the living overview for the AI Presets Boilerplate repository. 
 
 ## Purpose
 
-This repository provides reusable AI agent instructions, presets, and team review workflows centered on one canonical `CLAUDE.md` file. It standardizes how agents plan work, implement features, review code, reason about trade-offs, and document safe development permission guidance.
-
-Permission guidance is policy text only. It does not grant or enforce tool permissions by itself.
+This repository provides reusable AI agent instructions, presets, templates, examples, and team review workflows centered on one canonical `CLAUDE.md` file. It standardizes how agents plan work, implement features, review code, reason about trade-offs, and preserve project-specific guidance.
 
 The repository is documentation-first. It has no runtime, package manager, or install script.
 
@@ -44,7 +42,7 @@ All durable repository documentation must be written in English.
 
 - `CLAUDE.md`: canonical AI agent instructions.
 - `presets/`: reusable prompts for planning, implementation, review, reliability, security, tests, and flow mapping.
-- `templates/`: copy-ready request templates, project setup files, project overview template, and permission guidance templates.
+- `templates/`: copy-ready request templates, project setup files, and project overview template.
 - `examples/`: project-type examples showing which presets and templates to combine.
 - `docs/`: usage, maintenance, project overview, and decision logs.
 
@@ -52,7 +50,7 @@ All durable repository documentation must be written in English.
 
 ### New Project Setup
 
-Use `templates/new-project-CLAUDE.md` to copy canonical agent instructions into a new repository. Configure or prompt tools that do not discover `CLAUDE.md` automatically to read it before working. Add permission guidance from `templates/*-allow-permissions.md` when the team wants explicit allowlist policy text.
+Use `templates/new-project-CLAUDE.md` to copy canonical agent instructions into a new repository. Configure or prompt tools that do not discover `CLAUDE.md` automatically to read it before working.
 
 Use `templates/project-overview.md` to create an onboarding-first `docs/project-overview.md` in target repositories that do not already have one. The template helps humans and agents map purpose, system context, domains, services, workflows, repository structure, local development, operations, tests, and governance.
 
@@ -72,12 +70,6 @@ Use `presets/change-risk-calibration.md` when the required validation depth is u
 
 Use review presets in `presets/` to focus agents on engineering quality, security, reliability, tests, and event-driven or feature flow mapping.
 
-### Permissions
-
-Use `templates/codex-allow-permissions.md` and `templates/claude-allow-permissions.md` to document common safe local development actions and actions requiring explicit approval.
-
-Permission guides should prefer explicit command prefixes over broad tool prefixes. Package manager commands should name reviewed scripts such as test, lint, typecheck, build, and dev. Docker commands that inspect local state are generally safer than Docker lifecycle commands, which should require approval unless a project-specific allow rule has been reviewed.
-
 ### Documentation Validation
 
 Use the lightweight validation checklist in `docs/maintenance.md` for documentation changes. The repository remains script-free; validation is performed with standard file listing and search commands.
@@ -92,7 +84,7 @@ Every meaningful feature or workflow change should update this overview when it 
 - Agent behavior.
 - Workflow.
 - Directory structure.
-- Permission policy.
+- Security model.
 - Maintenance rules.
 - Important trade-offs.
 
@@ -120,8 +112,6 @@ Use `templates/decision-log-entry.md` when adding new decision files.
 - New feature requests have both a human intake template and an agent planning preset.
 - Development decisions are tracked as one file per decision under `docs/decisions/`.
 - New project overview files should start from `templates/project-overview.md`, which is optimized for human onboarding and agent orientation through practical sections and Mermaid diagrams.
-- Permission guidance lives as copy-ready templates and prefers explicit, reviewed command prefixes over broad package manager or Docker lifecycle permissions.
 - Documentation validation is maintained as a lightweight checklist rather than a runtime test suite or apply script.
 - The local adoption workflow uses an agent prompt that preserves target repository knowledge first, then merges relevant presets conservatively.
-- Permission guidance is kept under `templates/` because it is policy text and does not grant permissions by itself.
 - Tool-specific instruction files such as `AGENTS.md` and `.github/copilot-instructions.md` are intentionally not maintained; tools should be pointed at `CLAUDE.md` instead.

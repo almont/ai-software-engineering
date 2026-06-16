@@ -19,8 +19,7 @@ Agents should calibrate rigor to risk: documentation-only changes need lightweig
 1. Copy `templates/new-project-CLAUDE.md` into the target repository as `CLAUDE.md`.
 2. Configure or prompt AI tools that do not discover `CLAUDE.md` automatically to read it before working.
 3. Copy `templates/project-overview.md` to `docs/project-overview.md` if the target repository does not already have a project overview.
-4. Copy `templates/codex-allow-permissions.md` or `templates/claude-allow-permissions.md` if the team wants documented safe actions.
-5. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
+4. Copy or paste relevant presets from `presets/` into PR reviews, issue templates, or team documentation.
 
 For existing or legacy repositories, prefer the README's agent-driven adoption prompt. It instructs the agent to inspect the target repository first, preserve project-specific guidance, merge duplicate content conservatively, and avoid blind overwrites.
 
@@ -53,14 +52,10 @@ For existing or legacy repositories, prefer the README's agent-driven adoption p
 - Use `examples/backend-service.md` for backend APIs and services.
 - Use `examples/frontend-app.md` for frontend applications.
 
-## Permission Guidance
-
-The permission templates document common safe local development actions. They are not permission engines by themselves. Use them as policy text when configuring Codex, Claude, or team workflows.
-
 ## Project Overview And Decisions
 
 Read `docs/project-overview.md` to understand the current repository shape and operating model.
 
 Use `templates/project-overview.md` to create a new onboarding-first project overview when a target repository does not already have one.
 
-For meaningful development decisions, create one file under `docs/decisions/` using `templates/decision-log-entry.md`. Update `docs/project-overview.md` when the project purpose, structure, workflow, permission policy, or maintenance model changes.
+For meaningful development decisions, create one file under `docs/decisions/` using `templates/decision-log-entry.md`. Update `docs/project-overview.md` when the project purpose, structure, workflow, security model, or maintenance model changes.
